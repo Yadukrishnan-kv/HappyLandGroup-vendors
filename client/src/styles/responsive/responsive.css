@@ -1,0 +1,95 @@
+@import '../globals/variables.css';
+
+/* Breakpoint: 1440px */
+@media (max-width: 1440px) {
+  :root {
+    --container-max: 1200px;
+    --padding-section: 100px;
+  }
+}
+
+/* Breakpoint: 1200px */
+@media (max-width: 1200px) {
+  :root {
+    --container-max: 960px;
+    --padding-section: 90px;
+  }
+  .container {
+    padding: 0 30px;
+  }
+  .grid-4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Breakpoint: 1024px (Tablet Landscape) */
+@media (max-width: 1024px) {
+  :root {
+    --container-max: 720px;
+    --padding-section: 80px;
+  }
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  h1 { font-size: 3rem; }
+  h2 { font-size: 2.2rem; }
+}
+
+/* Breakpoint: 768px (Tablet Portrait) */
+@media (max-width: 768px) {
+  :root {
+    --container-max: 100%;
+    --padding-section: 70px;
+  }
+  .container {
+    padding: 0 20px;
+  }
+  .grid-2 {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .grid-3 {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .grid-4 {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 2rem; }
+  h3 { font-size: 1.5rem; }
+  
+  .section {
+    padding: var(--padding-section) 0;
+  }
+}
+
+/* Breakpoint: 480px (Smartphones) */
+@media (max-width: 480px) {
+  :root {
+    --padding-section: 60px;
+  }
+  .container {
+    padding: 0 16px;
+  }
+  h1 { font-size: 2.1rem; }
+  h2 { font-size: 1.8rem; }
+  
+  .btn-premium {
+    padding: 14px 28px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Breakpoint: 375px (Compact Mobile) */
+@media (max-width: 375px) {
+  h1 { font-size: 1.9rem; }
+  h2 { font-size: 1.6rem; }
+  .container {
+    padding: 0 12px;
+  }
+}

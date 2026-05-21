@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+:root {
+  /* ======================================================
+     PRIMARY BRAND COLORS (ULTRA PREMIUM LIGHT BRAND)
+  ====================================================== */
+  --primary-blue: #1A43AD;
+  --primary-blue-dark: #0D3FC6;
+  --primary-blue-light: #0D34E9;
+
+  --primary-gold: #E3B124; /* Rich Luxury Gold matching user requirement #E3B124 */
+  --primary-gold-light: #EBD362; /* Light luxury gold matching user requirement #EBD362 */
+  --primary-gold-dark: #B08615;
+
+  /* ======================================================
+     LUXURY LIGHT BACKGROUNDS
+  ====================================================== */
+  --bg-main: #FFFFFF;
+  --bg-secondary: #F4F6FC; /* Soft blue-tinted secondary background */
+  --bg-card: #FFFFFF;
+  --bg-soft-user: #111111;
+  --bg-brand-blue: #1A43AD; /* Premium deep brand blue requested background color */
+
+  /* ======================================================
+     LIGHT MODE TEXT COLORS
+  ====================================================== */
+  --text-white: #111312; /* Dark main text font color requested (#111312) */
+  --text-light: #3E4140; /* Secondary body font color derived from #111312 */
+  --text-muted: #676A69; /* Neutral grey for subtitles */
+  --text-dark: #FFFFFF;  /* Inverted light text (for dark cards or banners) */
+
+  /* ======================================================
+     ACCENT COLORS
+  ====================================================== */
+  --accent-cyan: #0891B2;
+  --accent-purple: #7C3AED;
+  --accent-orange: #EA580C;
+  --accent-green: #059669;
+
+  /* ======================================================
+     GLASSMORPHISM COLORS (LIGHT THEME SPECIFIC)
+  ====================================================== */
+  --glass-bg: rgba(255, 255, 255, 0.82);
+  --glass-border: rgba(26, 67, 173, 0.08); /* Subtle royal blue border glow */
+  --glass-highlight: rgba(26, 67, 173, 0.02);
+
+  /* ======================================================
+     GRADIENTS
+  ====================================================== */
+  --gradient-primary:
+    linear-gradient(
+      135deg,
+      #FFFFFF 0%,
+      #F4F6FC 100%
+    );
+
+  --gradient-gold:
+    linear-gradient(
+      135deg,
+      #EBD362 0%,
+      #E3B124 100%
+    );
+
+  --gradient-blue:
+    linear-gradient(
+      135deg,
+      #0D34E9 0%,
+      #0D3FC6 100%
+    );
+
+  --gradient-brand-blue:
+    linear-gradient(
+      135deg,
+      #1A43AD 0%,
+      #0D3FC6 100%
+    );
+
+  --gradient-cinematic:
+    linear-gradient(
+      135deg,
+      #FFFFFF 0%,
+      #F4F6FC 40%,
+      #ECEFF7 100%
+    );
+
+  --gradient-card:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.95),
+      rgba(244, 246, 252, 0.9)
+    );
+
+  --gradient-overlay:
+    linear-gradient(
+      to top,
+      rgba(255, 255, 255, 0.98) 0%,
+      rgba(255, 255, 255, 0.5) 60%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
+
+  /* ======================================================
+     PREMIUM LIGHT MODE SHADOWS
+  ====================================================== */
+  --shadow-gold:
+    0 15px 45px rgba(227, 177, 36, 0.12);
+
+  --shadow-blue:
+    0 15px 45px rgba(26, 67, 173, 0.1);
+
+  --shadow-card:
+    0 15px 35px rgba(0, 0, 0, 0.05);
+
+  --shadow-soft:
+    0 8px 24px rgba(0, 0, 0, 0.04);
+
+  /* ======================================================
+     BORDER RADIUS
+  ====================================================== */
+  --radius-sm-brand: 12px;
+  --radius-md-brand: 20px;
+  --radius-lg-brand: 28px;
+  --radius-xl: 40px;
+  --radius-full: 999px;
+
+  /* ======================================================
+     TRANSITIONS
+  ====================================================== */
+  --transition-fast-brand: 0.2s ease-out;
+  --transition-normal: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ======================================================
+     FONTS
+  ====================================================== */
+  --font-serif: 'Montserrat', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Montserrat', system-ui, -apple-system, sans-serif;
+
+  /* ======================================================
+     LAYOUT SPACING
+  ====================================================== */
+  --header-height: 90px;
+  --container-max: 1280px;
+  --padding-section: 120px;
+
+  /* ======================================================
+     LEGACY COMPATIBILITY MAPPINGS (PREVENTS DESIGN BREAKS)
+  ====================================================== */
+  --primary: var(--primary-gold);
+  --primary-hover: var(--primary-gold-dark);
+  --primary-gradient: var(--gradient-gold);
+  --primary-light: rgba(227, 177, 36, 0.08);
+
+  --dark: var(--text-white);
+  --dark-soft: var(--text-light);
+  --text: var(--text-light);
+  --subtext: var(--text-muted);
+
+  --bg: var(--bg-main);
+  --bg-soft: var(--bg-secondary);
+  --newsletter-bg: #FFFFFF;
+
+  --white: #FFFFFF;
+  --card-bg: var(--bg-card);
+  --card-bg-hover: rgba(0, 0, 0, 0.02);
+  --white-trans: var(--glass-bg);
+  --border-light: var(--glass-border);
+  --border-glass: var(--glass-border);
+
+  --radius-lg: var(--radius-lg-brand);
+  --radius-md: var(--radius-md-brand);
+  --radius-sm: var(--radius-sm-brand);
+  --radius-pill: var(--radius-full);
+
+  --shadow-luxury: var(--shadow-card);
+  --shadow-glass: var(--shadow-soft);
+  --glow-primary: 0 0 35px rgba(227, 177, 36, 0.15);
+
+  --transition-smooth: var(--transition-slow);
+  --transition-fast: var(--transition-fast-brand);
+}

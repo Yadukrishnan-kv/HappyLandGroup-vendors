@@ -1,0 +1,383 @@
+{
+  "users": [
+    {
+      "_id": "6a0d40f6c06a8f3173762b8b",
+      "firstName": "Alen",
+      "lastName": "Happy",
+      "email": "admin@happygroupventures.com",
+      "password": "$2a$10$LP93OmiF6OY7gekMUHgYl./C82MParXFsglYGsfGXRjeNQNkKibY.",
+      "phone": "+971 4 123 4567",
+      "avatar": "https://api.dicebear.com/7.x/adventurer/svg?seed=Jack",
+      "role": "admin",
+      "createdAt": "2026-05-20T05:04:54.766Z"
+    },
+    {
+      "_id": "6a0d40f6c06a8f3173762b8c",
+      "firstName": "Sophia",
+      "lastName": "Traveler",
+      "email": "guest@happygroupventures.com",
+      "password": "$2a$10$LP93OmiF6OY7gekMUHgYl./C82MParXFsglYGsfGXRjeNQNkKibY.",
+      "phone": "+971 50 987 6543",
+      "avatar": "https://api.dicebear.com/7.x/adventurer/svg?seed=Sophia",
+      "role": "user",
+      "createdAt": "2026-05-20T05:04:54.834Z"
+    }
+  ],
+  "tours": [
+    {
+      "_id": "6a0d40f6c06a8f3173762b8d",
+      "title": "Bespoke Desert Safari & Dune Dinner",
+      "country": "UAE",
+      "city": "Dubai",
+      "description": "Experience a premium dune bashing drive in a luxury 4x4 land cruiser, sunset falconry capture photography, private camel riding tours, and a five-star traditional Arabian camp buffet dinner with live fire shows under the stars.",
+      "images": [
+        "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "price": 150,
+      "rating": 4.9,
+      "reviewsCount": 2,
+      "maxPeople": 6,
+      "distance": 80,
+      "featured": true,
+      "startDates": [
+        "2026-06-15T00:00:00.000Z",
+        "2026-07-20T00:00:00.000Z"
+      ],
+      "tourType": "UAE Tours",
+      "duration": "1 Day",
+      "includes": [
+        "Luxury Transit",
+        "Professional Guide"
+      ]
+    },
+    {
+      "_id": "6a0d40f6c06a8f3173762b8e",
+      "title": "Burj Khalifa Skyline & Aquarium Access",
+      "country": "UAE",
+      "city": "Dubai",
+      "description": "Step onto the highest observation deck at Burj Khalifa (At the Top Level 148) with private lounge access, coupled with an intimate walkthrough of the Dubai Aquarium & Underwater Zoo.",
+      "images": [
+        "https://images.unsplash.com/photo-1582672060674-bc2bd808a83a?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "price": 180,
+      "rating": 4.8,
+      "reviewsCount": 1,
+      "maxPeople": 4,
+      "distance": 5,
+      "featured": true,
+      "startDates": [
+        "2026-06-01T00:00:00.000Z",
+        "2026-07-05T00:00:00.000Z"
+      ],
+      "tourType": "UAE Tours",
+      "duration": "1 Day",
+      "includes": [
+        "Luxury Transit",
+        "Professional Guide"
+      ]
+    },
+    {
+      "_id": "6a0d40f6c06a8f3173762b8f",
+      "title": "Abu Dhabi Royal Palace & Grand Mosque",
+      "country": "UAE",
+      "city": "Abu Dhabi",
+      "description": "Take a private chauffeured luxury transit to the capital. Explore the majestic Sheikh Zayed Grand Mosque, the lavish halls of Qasr Al Watan Presidential Palace, and enjoy high tea at Emirates Palace hotel.",
+      "images": [
+        "https://images.unsplash.com/photo-1542856391-010fb87dcfed?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1584551246679-0daf3d275d0f?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "price": 220,
+      "rating": 4.95,
+      "reviewsCount": 0,
+      "maxPeople": 8,
+      "distance": 140,
+      "featured": true,
+      "startDates": [
+        "2026-10-10T00:00:00.000Z"
+      ],
+      "tourType": "UAE Tours",
+      "duration": "1 Day",
+      "includes": [
+        "Luxury Transit",
+        "Professional Guide"
+      ]
+    },
+    {
+      "_id": "6a0d40f6c06a8f3173762b90",
+      "title": "Scenic Yacht Cruise & Marina Horizon",
+      "country": "UAE",
+      "city": "Dubai",
+      "description": "Private charter cruise along Dubai Marina, Blue Waters Island, Ain Dubai, Atlantis the Palm, and Burj Al Arab. Complete with a personal captain, custom gourmet seafood grills, and sunset champagne.",
+      "images": [
+        "https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "price": 650,
+      "rating": 5,
+      "reviewsCount": 0,
+      "maxPeople": 12,
+      "distance": 25,
+      "featured": true,
+      "startDates": [
+        "2026-05-18T00:00:00.000Z"
+      ],
+      "tourType": "UAE Tours",
+      "duration": "1 Day",
+      "includes": [
+        "Luxury Transit",
+        "Professional Guide"
+      ]
+    },
+    {
+      "_id": "6a0d40f6c06a8f3173762b91",
+      "title": "Aesthetic Helicopter Horizon Ride",
+      "country": "UAE",
+      "city": "Dubai",
+      "description": "Experience a thrilling aerial helicopter tour soaring over the iconic Palm Jumeirah, World Islands, the pristine coastline of Jumeirah beach, and the towering silhouette of Burj Khalifa.",
+      "images": [
+        "https://images.unsplash.com/photo-1508849789987-4e5333c12b78?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "price": 450,
+      "rating": 4.85,
+      "reviewsCount": 0,
+      "maxPeople": 6,
+      "distance": 50,
+      "featured": false,
+      "startDates": [
+        "2026-06-25T00:00:00.000Z"
+      ],
+      "tourType": "UAE Tours",
+      "duration": "1 Day",
+      "includes": [
+        "Luxury Transit",
+        "Professional Guide"
+      ]
+    },
+    {
+      "_id": "6a0d40f6c06a8f3173762b92",
+      "title": "Yas Island Thrills & Ferrari World",
+      "country": "UAE",
+      "city": "Abu Dhabi",
+      "description": "An exhilarating action package featuring fast-track entrance to Ferrari World (home of the world's fastest rollercoaster), Yas Waterworld, and Warner Bros. World, including executive transfers.",
+      "images": [
+        "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "price": 280,
+      "rating": 4.9,
+      "reviewsCount": 0,
+      "maxPeople": 8,
+      "distance": 120,
+      "featured": false,
+      "startDates": [
+        "2026-11-20T00:00:00.000Z"
+      ],
+      "tourType": "UAE Tours",
+      "duration": "1 Day",
+      "includes": [
+        "Luxury Transit",
+        "Professional Guide"
+      ]
+    },
+    {
+      "_id": "6a0d40f6c06a8f3173762b93",
+      "title": "Dhow Cruise Marina Gala Dinner",
+      "country": "UAE",
+      "city": "Dubai",
+      "description": "Glide along the glowing waters of Dubai Marina in a glass-walled luxury traditional dhow. Features an international 5-star buffet dinner, tanoura folklore dances, and dynamic views of towering skyscrapers.",
+      "images": [
+        "https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1439066615861-d1af74d74000?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "price": 120,
+      "rating": 4.75,
+      "reviewsCount": 0,
+      "maxPeople": 15,
+      "distance": 15,
+      "featured": false,
+      "startDates": [
+        "2026-09-01T00:00:00.000Z"
+      ],
+      "tourType": "UAE Tours",
+      "duration": "1 Day",
+      "includes": [
+        "Luxury Transit",
+        "Professional Guide"
+      ]
+    },
+    {
+      "_id": "6a0d40f6c06a8f3173762b94",
+      "title": "Atlantis Aquaventure & Dolphin Bay",
+      "country": "UAE",
+      "city": "Dubai",
+      "description": "Plunge into the world's largest waterpark at Atlantis The Palm. Enjoy fast-pass access to all major high-speed water slides, private beach loungers, and close-up encounters at Dolphin Bay.",
+      "images": [
+        "https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=1200&q=80",
+        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80"
+      ],
+      "price": 250,
+      "rating": 4.8,
+      "reviewsCount": 0,
+      "maxPeople": 10,
+      "distance": 30,
+      "featured": false,
+      "startDates": [
+        "2026-06-20T00:00:00.000Z"
+      ],
+      "tourType": "UAE Tours",
+      "duration": "1 Day",
+      "includes": [
+        "Luxury Transit",
+        "Professional Guide"
+      ]
+    }
+  ],
+  "reviews": [
+    {
+      "_id": "6a0d40f6c06a8f3173762b95",
+      "user": "6a0d40f6c06a8f3173762b8c",
+      "tour": "6a0d40f6c06a8f3173762b8d",
+      "rating": 5,
+      "comment": "Absolutely breathtaking! The premium desert safari with dune bashing was amazing and the sunset photos with falcons were spectacular. Highly professional travel management.",
+      "createdAt": "2026-05-20T05:04:54.834Z"
+    },
+    {
+      "_id": "6a0d40f6c06a8f3173762b96",
+      "user": "6a0d40f6c06a8f3173762b8b",
+      "tour": "6a0d40f6c06a8f3173762b8d",
+      "rating": 5,
+      "comment": "Superb camp buffer quality and luxury transfers. An absolute must-do for any executive team looking for authentic experiences.",
+      "createdAt": "2026-05-20T05:04:54.834Z"
+    },
+    {
+      "_id": "6a0d40f6c06a8f3173762b97",
+      "user": "6a0d40f6c06a8f3173762b8c",
+      "tour": "6a0d40f6c06a8f3173762b8e",
+      "rating": 4,
+      "comment": "Incredible views from Burj Khalifa observation deck. Quick queue bypass and the aquarium tour was brilliant for our family group!",
+      "createdAt": "2026-05-20T05:04:54.834Z"
+    }
+  ],
+  "bookings": [],
+  "subscribers": [],
+  "settings": {
+    "logoUrl": "",
+    "logoText": "Happy Land",
+    "logoTextSpan": "Group"
+  },
+  "premiumServices": [
+    {
+      "_id": "6a0e0e42b0f947844d5427a7",
+      "name": "Global Visa Services",
+      "shortDescription": "Professional, swift international visa processing for corporate personnel and leisure groups worldwide.",
+      "title": "Global Visa Services: Unrestricted Worldwide Mobility",
+      "about": "Happy Land Group Ventures offers standard-setting, highly secure global visa processing for high-net-worth individuals, business executives, and leisure groups. Our dedicated visa officers maintain active relations with major consulates, managing everything from documentation to VIP fast-track appointments globally.",
+      "icon": "FiGlobe",
+      "image": "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=1200&q=80",
+      "order": 1,
+      "status": "active"
+    },
+    {
+      "_id": "6a0e0e42b0f947844d5427a8",
+      "name": "UAE Tourist & Resident Visas",
+      "shortDescription": "Streamlined processing for tourist entry visas, resident visas, and official work authorization filings in Ajman & Dubai.",
+      "title": "UAE Tourist & Resident Visas: Golden Visa & Corporate Authorizations",
+      "about": "Navigate the complex landscape of UAE immigration effortlessly. We process VIP tourist visas, long-term multi-entry visas, and the exclusive UAE Golden Visa program for global investors. Our Ajman and Dubai headquarters handle corporate work permissions and family residency sponsor files in record time.",
+      "icon": "FiFileText",
+      "image": "https://images.unsplash.com/photo-1582672060674-bc2bd808a83a?auto=format&fit=crop&w=1200&q=80",
+      "order": 2,
+      "status": "active"
+    },
+    {
+      "_id": "6a0e0e42b0f947844d5427a9",
+      "name": "Luxury Excursions",
+      "shortDescription": "Bespoke premium itineraries featuring private desert dunes, helicopter flights, and cultural encounters across the UAE.",
+      "title": "Luxury Excursions: Bespoke Curated UAE Adventures",
+      "about": "Experience the UAE in its most sublime form. From private dune bashing in custom Land Cruisers and sunset falconry to fast-pass luxury access at Qasr Al Watan, our excursions are hand-tailored. Each trip includes dedicated guest relations and elite access guarantees.",
+      "icon": "FiCompass",
+      "image": "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=1200&q=80",
+      "order": 3,
+      "status": "active"
+    },
+    {
+      "_id": "6a0e0e42b0f947844d5427aa",
+      "name": "MICE & Corporate Events",
+      "shortDescription": "World-class management of executive meetings, incentive corporate travels, summits, and grand exhibitions.",
+      "title": "MICE & Corporate Events: Elite Corporate Summit Organizing",
+      "about": "We specialize in corporate Meetings, Incentives, Conferences, and Exhibitions (MICE). Our coordinators deliver end-to-end event logistics for international delegations, board meetings, and product launches in five-star Dubai venues. This includes high-profile VIP security, VIP transits, and luxury banqueting.",
+      "icon": "FiBriefcase",
+      "image": "https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80",
+      "order": 4,
+      "status": "active"
+    },
+    {
+      "_id": "6a0e0e42b0f947844d5427ab",
+      "name": "FIT Custom Leisure",
+      "shortDescription": "Bespoke arrangements for Free Independent Travelers, creating personalized luxury vacations that match specific needs.",
+      "title": "FIT Custom Leisure: Personal Luxury Tailoring",
+      "about": "For Free Independent Travelers (FIT) who seek individualistic discovery without structural constraints, we offer complete vacation personalization. Our lifestyle curators program custom daily schedules, select rare dining tables, and assemble bespoke experiences matching your design aesthetics.",
+      "icon": "FiSliders",
+      "image": "https://images.unsplash.com/photo-1506929562872-bb421503ef21?auto=format&fit=crop&w=1200&q=80",
+      "order": 5,
+      "status": "active"
+    },
+    {
+      "_id": "6a0e0e42b0f947844d5427ac",
+      "name": "Boutique Accommodations",
+      "shortDescription": "Curated list of 5-star hotels, luxury resort suites, and boutique private villa rentals with VIP privileges.",
+      "title": "Boutique Accommodations: Ultra-Luxury Villas & Penthouse Rentals",
+      "about": "Through our private network, we secure bookings in the UAE's most exclusive five-star luxury resorts, presidential penthouse suites, and gated private island villas (e.g. Palm Jumeirah). Our partnerships guarantee priority check-ins, custom Butler services, and complimentary VVIP upgrades.",
+      "icon": "FiHome",
+      "image": "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80",
+      "order": 6,
+      "status": "active"
+    },
+    {
+      "_id": "6a0e0e42b0f947844d5427ad",
+      "name": "Executive Transfers",
+      "shortDescription": "Luxury ground transits, helicopter charters, and private yacht transfers ensuring ultimate comfort and style.",
+      "title": "Executive Transfers: Elite Land, Sea, and Air Transits",
+      "about": "Arrive in ultimate comfort and safety. We maintain a stellar fleet of Rolls-Royce, Mercedes-Maybach, and luxury SUVs driven by professional bilingual security chauffeurs. We also arrange private helicopter transits and speedboat harbor transfers across Dubai Marina.",
+      "icon": "FiTrendingUp",
+      "image": "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80",
+      "order": 7,
+      "status": "active"
+    },
+    {
+      "_id": "6a0e0e42b0f947844d5427ae",
+      "name": "Meet & Greet",
+      "shortDescription": "Elite fast-track airport concierge services guiding you through passport controls and luxury lounge access.",
+      "title": "Meet & Greet: Fast-Track Airport VVIP Concierge",
+      "about": "Skip the queues completely. Our airport agents greet you directly at the aircraft gate, bypass you through priority immigration and luggage handling, and usher you into private first-class airport lounges before transitioning you to your chauffeur.",
+      "icon": "FiUserCheck",
+      "image": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1200&q=80",
+      "order": 8,
+      "status": "active"
+    },
+    {
+      "_id": "6a0e0e42b0f947844d5427af",
+      "name": "Cruises & Yacht Charters",
+      "shortDescription": "Private charters on premium yachts and traditional dhow cruises complete with gourmet live catering.",
+      "title": "Cruises & Yacht Charters: Ocean Splendors & Private Yacht Sailing",
+      "about": "Charter a private superyacht with a dedicated captain and crew. Sail past Ain Dubai and Palm Jumeirah with luxury champagne flows, a custom live chef grill, and custom jetski attachments. We also host grand events on traditional glass-walled dhows.",
+      "icon": "FiAnchor",
+      "image": "https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?auto=format&fit=crop&w=1200&q=80",
+      "order": 9,
+      "status": "active"
+    },
+    {
+      "_id": "6a0e0e42b0f947844d5427b0",
+      "name": "B2B Portal model",
+      "shortDescription": "State-of-the-art booking portals for wholesale agencies, providing real-time inventories and global solutions.",
+      "title": "B2B Portal Model: High-Velocity Global Agency Booking",
+      "about": "For international wholesale travel companies and B2B agents, we offer API-integrated booking systems. Gain immediate access to real-time UAE room inventories, visa queues, private excursion availabilities, and competitive wholesale pricing matrices.",
+      "icon": "FiLayers",
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+      "order": 10,
+      "status": "active"
+    }
+  ]
+}

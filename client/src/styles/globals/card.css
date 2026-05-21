@@ -1,0 +1,223 @@
+@import './variables.css';
+
+.tour-card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-luxury);
+  transition: all 0.5s var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+.tour-card:hover {
+  transform: translateY(-10px);
+  border-color: rgba(249, 168, 38, 0.25);
+  box-shadow: 0 30px 60px rgba(249, 168, 38, 0.05), 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================================================
+   SPOTLIGHT INTERACTIVE MECHANICS
+   ========================================================================== */
+.spotlight-card {
+  position: relative;
+}
+
+/* Internal gold glow tracking hover */
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: radial-gradient(
+    600px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+    rgba(249, 168, 38, 0.06),
+    transparent 40%
+  );
+  z-index: 1;
+  pointer-events: none;
+  transition: opacity 0.5s var(--transition-smooth);
+  opacity: 0;
+}
+
+/* Glowing border flare tracking hover */
+.spotlight-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px; /* border thickness */
+  background: radial-gradient(
+    300px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+    rgba(249, 168, 38, 0.25),
+    transparent 45%
+  );
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s var(--transition-smooth);
+}
+
+.spotlight-card:hover::before,
+.spotlight-card:hover::after {
+  opacity: 1;
+}
+
+.tour-card-img-wrap {
+  position: relative;
+  height: 280px;
+  overflow: hidden;
+}
+
+.tour-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s var(--transition-smooth);
+}
+
+.tour-card:hover .tour-card-img {
+  transform: scale(1.08);
+}
+
+.tour-card-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: var(--white-trans);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border-glass);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--dark);
+  z-index: 2;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tour-card-featured-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: var(--primary-gradient);
+  color: var(--white);
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  font-size: 0.7rem;
+  font-weight: 700;
+  z-index: 2;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 10px rgba(249, 168, 38, 0.3);
+}
+
+.tour-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.6) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.tour-card-content {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.tour-card-location {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--primary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+.tour-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--dark);
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.tour-card-desc {
+  font-size: 0.88rem;
+  color: var(--subtext);
+  margin-bottom: 24px;
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tour-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  border-top: 1px solid var(--border-light);
+  padding-top: 20px;
+}
+
+.tour-card-price-label {
+  font-size: 0.75rem;
+  color: var(--subtext);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tour-card-price-value {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+.tour-card-price-value span {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--subtext);
+}
+
+.tour-card-rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.tour-card-rating svg {
+  color: var(--primary);
+}
+
+.tour-card-rating span {
+  font-weight: 400;
+  color: var(--subtext);
+  font-size: 0.8rem;
+}

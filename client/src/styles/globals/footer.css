@@ -1,0 +1,206 @@
+@import './variables.css';
+
+.footer-section {
+  background-color: var(--bg-brand-blue); /* Royal brand blue background color (#1A43AD) */
+  color: var(--white); /* White text color for high contrast */
+  padding: 80px 0 40px;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-section::before {
+  content: '';
+  position: absolute;
+  top: -150px;
+  right: -100px;
+  width: 500px;
+  height: 500px;
+  background: var(--primary-gradient);
+  border-radius: 50%;
+  filter: blur(180px);
+  opacity: 0.15; /* Increased opacity for gold glow on rich blue background */
+  pointer-events: none;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.2fr 1.5fr;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.footer-column h3 {
+  color: var(--white); /* White headings */
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+.footer-logo {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--white); /* White brand logo */
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.footer-logo span {
+  color: var(--primary); /* Gold accent */
+}
+
+.footer-desc {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.7); /* Translucent white body copy */
+  margin-bottom: 30px;
+}
+
+.footer-socials {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.footer-social-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1); /* Elegant semi-translucent white glass */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  transition: all 0.4s var(--transition-smooth);
+}
+
+.footer-social-icon:hover {
+  background: var(--primary-gradient);
+  border-color: transparent;
+  transform: translateY(-3px) rotate(10deg);
+  box-shadow: var(--shadow-gold);
+  color: var(--white);
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-link {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.85); /* Legible soft white links */
+  transition: var(--transition-fast);
+  cursor: pointer;
+}
+
+.footer-link:hover {
+  color: var(--primary); /* Premium Gold hover state */
+  padding-left: 5px;
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+  color: rgba(255, 255, 255, 0.85); /* Highly legible contact details */
+}
+
+.footer-contact-icon {
+  color: var(--primary); /* Vibrant gold contact icons */
+  margin-top: 4px;
+}
+
+/* Inline Newsletter Form inside Footer */
+.footer-newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-newsletter-input-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.footer-newsletter-input {
+  width: 100%;
+  background: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 16px 20px;
+  border-radius: var(--radius-pill);
+  color: var(--dark);
+  font-size: 0.85rem;
+  transition: all 0.4s var(--transition-smooth);
+}
+
+.footer-newsletter-input:focus {
+  border-color: var(--primary);
+  background: var(--white);
+  box-shadow: 0 0 15px rgba(233, 211, 98, 0.25);
+}
+
+.btn-footer-subscribe {
+  width: 100%;
+  background: var(--primary-gradient); /* Premium gold gradient */
+  color: var(--white);
+  padding: 14px 24px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 0.85rem;
+  box-shadow: 0 4px 15px rgba(227, 177, 36, 0.3);
+  transition: all 0.4s var(--transition-smooth);
+}
+
+.btn-footer-subscribe:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1); /* White separator */
+  padding-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.65); /* Soft copyright text */
+}
+
+.footer-bottom-links {
+  display: flex;
+  gap: 30px;
+}
+
+.footer-bottom-links a:hover {
+  color: var(--primary);
+}
+
+/* Responsiveness overrides */
+@media (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .footer-bottom {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+}
