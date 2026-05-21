@@ -421,7 +421,7 @@ const ContactManager = () => {
             <div className="admin-modal-body" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               
               {/* Meta Data Box */}
-              <div style={{ padding: '20px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 'var(--radius-md)', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
+              <div className="admin-grid-2" style={{ padding: '20px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)', borderRadius: 'var(--radius-md)' }}>
                 <div>
                   <label style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', display: 'block', marginBottom: '4px' }}>
                     <FiUser style={{ marginRight: '4px', verticalAlign: 'middle' }} /> Sender Identity

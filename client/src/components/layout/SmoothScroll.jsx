@@ -1,9 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLocation } from 'react-router-dom';
 
 export const SmoothScroll = ({ children }) => {
+  const { pathname } = useLocation();
+  const lenisRef = useRef(null);
+
   useEffect(() => {
     // Register GSAP ScrollTrigger
     gsap.registerPlugin(ScrollTrigger);
@@ -16,6 +20,8 @@ export const SmoothScroll = ({ children }) => {
       infinite: false,
     });
 
+    lenisRef.current = lenis;
+
     // Synchronize Lenis scrolling with GSAP ScrollTrigger
     lenis.on('scroll', ScrollTrigger.update);
 
@@ -25,14 +31,19 @@ export const SmoothScroll = ({ children }) => {
 
     gsap.ticker.lagSmoothing(0);
 
-    // Scroll to top on route mounts (cleaner SPA user experience)
-    window.scrollTo(0, 0);
-
     return () => {
       lenis.destroy();
       gsap.ticker.remove(lenis.raf);
     };
   }, []);
+
+  useEffect(() => {
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname]);
 
   return <>{children}</>;
 };

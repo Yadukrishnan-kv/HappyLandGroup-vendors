@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   FiCalendar, FiCompass, 
   FiEdit, FiLogOut, FiCheckCircle, FiAlertCircle, FiSettings, FiImage,
-  FiUsers, FiDollarSign, FiPlus, FiTrash2, FiBriefcase, FiGlobe, FiShield
+  FiUsers, FiDollarSign, FiPlus, FiTrash2, FiBriefcase, FiGlobe, FiShield, FiMenu
 } from 'react-icons/fi';
 import { useAuth } from '../../context/AuthContext';
 import API from '../../api';
@@ -48,6 +48,7 @@ export const AdminDashboard = () => {
 
   // State Management
   const [activeTab, setActiveTab] = useState('admin-overview');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [profileSuccess, setProfileSuccess] = useState(null);
   const [profileError, setProfileError] = useState(null);
   const [profileLoading, setProfileLoading] = useState(false);
@@ -319,8 +320,19 @@ export const AdminDashboard = () => {
   return (
     <div className="admin-dashboard-container">
       
+      {/* Mobile Admin Navbar (Visible only on <992px) */}
+      <div className="admin-mobile-navbar">
+        <div className="admin-mobile-brand">
+          <FiShield style={{ color: 'var(--primary-gold)' }} />
+          <span>Admin Panel</span>
+        </div>
+        <button className="admin-mobile-hamburger" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+          <FiMenu size={24} />
+        </button>
+      </div>
+
       {/* Sidebar Navigation */}
-      <aside className="admin-sidebar">
+      <aside className={`admin-sidebar ${mobileMenuOpen ? 'open' : ''}`}>
         <div className="admin-user-profile">
           <div className="admin-avatar-container">
             <img 
@@ -339,35 +351,35 @@ export const AdminDashboard = () => {
         <ul className="admin-menu">
           <li 
             className={`admin-menu-item ${activeTab === 'admin-overview' ? 'active' : ''}`}
-            onClick={() => setActiveTab('admin-overview')}
+            onClick={() => { setActiveTab('admin-overview'); setMobileMenuOpen(false); }}
           >
             <FiCompass />
             <span>Business Overview</span>
           </li>
           <li 
             className={`admin-menu-item ${activeTab === 'admin-bookings' ? 'active' : ''}`}
-            onClick={() => setActiveTab('admin-bookings')}
+            onClick={() => { setActiveTab('admin-bookings'); setMobileMenuOpen(false); }}
           >
             <FiCalendar />
             <span>Manage Bookings</span>
           </li>
           <li 
             className={`admin-menu-item ${activeTab === 'admin-tours' ? 'active' : ''}`}
-            onClick={() => setActiveTab('admin-tours')}
+            onClick={() => { setActiveTab('admin-tours'); setMobileMenuOpen(false); }}
           >
             <FiBriefcase />
             <span>Manage Tours</span>
           </li>
           <li 
             className={`admin-menu-item ${activeTab === 'admin-users' ? 'active' : ''}`}
-            onClick={() => setActiveTab('admin-users')}
+            onClick={() => { setActiveTab('admin-users'); setMobileMenuOpen(false); }}
           >
             <FiUsers />
             <span>Manage Users</span>
           </li>
           <li 
             className={`admin-menu-item ${activeTab === 'admin-cms' ? 'active' : ''}`}
-            onClick={() => setActiveTab('admin-cms')}
+            onClick={() => { setActiveTab('admin-cms'); setMobileMenuOpen(false); }}
           >
             <FiGlobe />
             <span>Manage CMS</span>
@@ -790,7 +802,7 @@ export const AdminDashboard = () => {
                         </div>
                       </div>
 
-                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                      <div className="admin-grid-2">
                         <div className="admin-form-group">
                           <label>First Name</label>
                           <input
@@ -907,7 +919,7 @@ export const AdminDashboard = () => {
             <form onSubmit={handleSaveTour} style={{ display: 'flex', flexDirection: 'column', flex: 1, overflow: 'hidden', minHeight: 0 }}>
               <div className="admin-modal-body" style={{ display: 'flex', flexDirection: 'column', padding: '30px', overflowY: 'auto', flex: 1, minHeight: 0 }}>
                 
-                <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '20px' }}>
+                <div className="admin-grid-1-2">
                   <div className="admin-form-group">
                     <label>Excursion Package Title</label>
                     <input 
@@ -931,7 +943,7 @@ export const AdminDashboard = () => {
                   </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                <div className="admin-grid-2">
                   <div className="admin-form-group">
                     <label>City Location</label>
                     <input 
@@ -969,7 +981,7 @@ export const AdminDashboard = () => {
                   />
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '20px' }}>
+                <div className="admin-grid-3">
                   <div className="admin-form-group">
                     <label>Main Banner Image URL</label>
                     <input 
@@ -1025,7 +1037,7 @@ export const AdminDashboard = () => {
 
                 <div className="admin-form-group">
                   <label>Package Inclusions (Up to 5)</label>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '15px' }}>
+                  <div className="admin-grid-3" style={{ gap: '15px' }}>
                     {[0, 1, 2, 3, 4].map(index => (
                       <input 
                         key={index}
@@ -1042,7 +1054,7 @@ export const AdminDashboard = () => {
                   </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '20px' }}>
+                <div className="admin-grid-3">
                   <div className="admin-form-group">
                     <label>Price Per Guest ($)</label>
                     <input 

@@ -51,7 +51,6 @@ export const Navbar = () => {
     { name: 'About Us', path: '/about' },
     { name: 'UAE Tours', path: '/tours/category/uae-tours' },
     { name: 'International Tours', path: '/tours/category/international-tours' },
-    { name: 'Journals', path: '/blogs' },
     { name: 'Contact Us', path: '/contact' }
   ];
 

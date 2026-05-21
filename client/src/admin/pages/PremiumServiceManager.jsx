@@ -213,7 +213,7 @@ const PremiumServiceManager = () => {
             </div>
             <form onSubmit={handleSubmit}>
               <div className="admin-modal-body" style={{ display: 'flex', flexDirection: 'column', gap: '20px', maxHeight: '70vh', overflowY: 'auto', padding: '25px' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '20px' }}>
+                <div className="admin-grid-1-2">
                   <div className="booking-form-group" style={{ marginBottom: '0' }}>
                     <label style={{ color: 'var(--text-light)' }}>Premium Service Name</label>
                     <input 
