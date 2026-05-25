@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiSearch, FiSliders, FiRefreshCw, FiDollarSign, FiUsers, FiMap } from 'react-icons/fi';
 import API from '../api';
@@ -72,6 +73,18 @@ export const Tours = () => {
     });
   };
 
+  const navigate = useNavigate();
+
+  const tourCategories = [
+    { title: 'UAE Tours', subtitle: 'Desert & City', slug: 'uae-tours' },
+    { title: 'International Tours', subtitle: 'World escapes', slug: 'international-tours' },
+    { title: 'Pilgrims', subtitle: 'Spiritual trips', slug: 'pilgrims' }
+  ];
+
+  const handleCategorySelect = (slug) => {
+    navigate(`/tours/category/${slug}`);
+  };
+
   const handleResetFilters = () => {
     setSearch('');
     setDays('');
@@ -94,6 +107,28 @@ export const Tours = () => {
             <p className="hero-desc tours-hero-desc">
               From isolated private ocean reserves to peak glacier micro-chalets, curate your private travel layout.
             </p>
+          </div>
+
+          <div className="tours-category-block">
+            <div className="tours-category-block-inner">
+              <div className="tours-category-block-label">
+                <FiSearch size={18} />
+                <span>Tour category</span>
+              </div>
+              <div className="tours-category-selector">
+                {tourCategories.map((category) => (
+                  <button
+                    key={category.slug}
+                    type="button"
+                    className="tours-category-pill"
+                    onClick={() => handleCategorySelect(category.slug)}
+                  >
+                    <strong>{category.title}</strong>
+                    <span>{category.subtitle}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
 
           {/* Luxury Filter Panel */}

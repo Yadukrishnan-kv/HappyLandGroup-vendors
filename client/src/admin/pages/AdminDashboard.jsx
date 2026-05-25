@@ -939,6 +939,7 @@ export const AdminDashboard = () => {
                     >
                       <option value="UAE Tours">UAE Tours</option>
                       <option value="International Tour">International Tour</option>
+                      <option value="Pilgrims">Pilgrims</option>
                     </select>
                   </div>
                 </div>

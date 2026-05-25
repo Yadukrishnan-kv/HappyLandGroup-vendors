@@ -37,11 +37,6 @@ export const Home = () => {
   const [services, setServices] = useState([]);
   const [servicesLoading, setServicesLoading] = useState(true);
   
-  // Search bar states
-  const [search, setSearch] = useState('');
-  const [distance, setDistance] = useState('');
-  const [maxPeople, setMaxPeople] = useState('');
-
   // Newsletter state
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterSuccess, setNewsletterSuccess] = useState(false);
@@ -127,13 +122,8 @@ export const Home = () => {
     return <IconComponent size={28} />;
   };
 
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    let query = '?';
-    if (search) query += `search=${search}&`;
-    if (distance) query += `distance=${distance}&`;
-    if (maxPeople) query += `maxPeople=${maxPeople}&`;
-    navigate(`/tours${query}`);
+  const handleCategorySelect = (slug) => {
+    navigate(`/tours/category/${slug}`);
   };
 
   const handleNewsletterSubmit = async (e) => {
@@ -213,41 +203,35 @@ export const Home = () => {
                 Happy Land Group Ventures curates the UAE's most exquisite travel experiences. From spectacular desert dunes to Burj Khalifa lounges, we design bespoke itineraries and premium visa solutions.
               </p>
 
-              {/* Glass search filter */}
-              <form className="search-pill-container" onSubmit={handleSearchSubmit}>
-                <div className="search-field">
-                  <label><FiMapPin size={12} /> Excursion</label>
-                  <input 
-                    type="text" 
-                    placeholder="Where in the UAE?" 
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                  />
-                </div>
-                <div className="search-field">
-                  <label><FiActivity size={12} /> Max Distance</label>
-                  <input 
-                    type="number" 
-                    placeholder="Distance (km)" 
-                    value={distance}
-                    onChange={(e) => setDistance(e.target.value)}
-                  />
-                </div>
-                <div className="search-field">
-                  <label><FiUsers size={12} /> Guests</label>
-                  <input 
-                    type="number" 
-                    placeholder="Max People" 
-                    value={maxPeople}
-                    onChange={(e) => setMaxPeople(e.target.value)}
-                  />
-                </div>
-                <div className="magnetic-wrap" ref={searchBtnRef}>
-                  <button type="submit" className="btn-search" title="Search UAE Excursions">
-                    <FiSearch size={20} />
+                {/* Transparent Glassmorphic Category Bar */}
+                <div className="home-category-bar">
+                  <button
+                    type="button"
+                    className="home-category-pill"
+                    onClick={() => handleCategorySelect('uae-tours')}
+                  >
+                    <strong>UAE Tours</strong>
+                    <span>Desert & City</span>
+                  </button>
+                  
+                  <button
+                    type="button"
+                    className="home-category-pill"
+                    onClick={() => handleCategorySelect('international-tours')}
+                  >
+                    <strong>International Tours</strong>
+                    <span>World escapes</span>
+                  </button>
+                  
+                  <button
+                    type="button"
+                    className="home-category-pill"
+                    onClick={() => handleCategorySelect('pilgrims')}
+                  >
+                    <strong>Pilgrims</strong>
+                    <span>Spiritual trips</span>
                   </button>
                 </div>
-              </form>
             </div>
 
             {/* Right Collage Column */}

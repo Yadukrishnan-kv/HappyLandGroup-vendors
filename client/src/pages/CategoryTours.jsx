@@ -28,6 +28,30 @@ export const CategoryTours = () => {
         ),
         description: 'Flawless, end-to-end luxury logistics through spectacular desert dunes, royal palaces, and elite Burj Khalifa lounges.'
       };
+    } else if (p === 'international-tours') {
+      return {
+        tourType: 'International Tour',
+        badge: 'Global Curations',
+        title: 'Bespoke International Getaways',
+        editorialTitle: (
+          <>
+            Bespoke <em>International</em> Getaways
+          </>
+        ),
+        description: 'Immersive, highly personalized voyages to the world\'s most exquisite and isolated international retreats.'
+      };
+    } else if (p === 'pilgrims') {
+      return {
+        tourType: 'Pilgrims',
+        badge: 'Sacred Journeys',
+        title: 'Spiritual Pilgrimage Tours',
+        editorialTitle: (
+          <>
+            Spiritual <em>Pilgrimage</em> Tours
+          </>
+        ),
+        description: 'Guided sacred journeys to holy sites and spiritual destinations, with expert escorts and premium hospitality.'
+      };
     } else {
       return {
         tourType: 'International Tour',

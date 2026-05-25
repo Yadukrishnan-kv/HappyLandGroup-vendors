@@ -52,7 +52,7 @@ const tourSchema = new mongoose.Schema(
     },
     tourType: {
       type: String,
-      enum: ['UAE Tours', 'International Tour'],
+      enum: ['UAE Tours', 'International Tour', 'Pilgrims'],
       default: 'UAE Tours'
     },
     duration: {

@@ -56,6 +56,7 @@
 }
 
 /* Glassmorphism search bar */
+
 .search-pill-container {
   display: flex;
   align-items: center;
@@ -69,6 +70,88 @@
   border-radius: var(--radius-pill);
   max-width: 800px;
   z-index: 10;
+}
+
+.home-category-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.35); /* Translucent glass */
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 24px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+  width: max-content;
+  max-width: 100%;
+  margin-top: 30px;
+}
+
+.home-category-pill {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-width: 140px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 20px;
+  color: var(--dark);
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+}
+
+.home-category-pill strong {
+  font-size: 0.95rem;
+  color: var(--dark);
+  font-weight: 700;
+}
+
+.home-category-pill span {
+  font-size: 0.78rem;
+  color: var(--dark-soft);
+  margin-top: 2px;
+  opacity: 0.85;
+}
+
+.home-category-pill:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.8);
+  border-color: var(--primary-gold);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Old category selector styles (keeping for backward compatibility) */
+.category-select {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  margin-top: 8px;
+}
+.category-option {
+  flex: 1;
+  padding: 6px 12px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: var(--radius-pill);
+  color: var(--white);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s var(--transition-smooth);
+  text-align: center;
+}
+.category-option.active {
+  background: var(--primary-gradient);
+  border-color: var(--primary);
+  color: var(--bg-main);
+}
+.category-option:hover {
+  background: rgba(255,255,255,0.2);
 }
 
 .search-field {
@@ -638,6 +721,26 @@
   .why-travel-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+  /* Category Selector - Tablet */
+  .category-selector-premium {
+    gap: 12px;
+    padding: 10px;
+    border-radius: 18px;
+  }
+  .category-card {
+    padding: 14px 16px;
+    border-radius: 12px;
+  }
+  .category-icon {
+    width: 44px;
+    height: 44px;
+  }
+  .category-title {
+    font-size: 0.85rem;
+  }
+  .category-subtitle {
+    font-size: 0.65rem;
+  }
 }
 
 @media (max-width: 768px) {
@@ -647,15 +750,71 @@
     height: 380px;
   }
   .gallery-grid {
-    grid-template-columns: 1fr;
-    grid-auto-rows: 250px;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 16px;
+    padding: 10px 4px 20px;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  .gallery-grid::-webkit-scrollbar {
+    height: 6px;
+  }
+  .gallery-grid::-webkit-scrollbar-thumb {
+    background: rgba(227, 177, 36, 0.3);
+    border-radius: 10px;
+  }
+  .gallery-item {
+    flex: 0 0 82%;
+    height: 320px;
+    scroll-snap-align: center;
   }
   .gallery-tall {
     grid-row: auto;
   }
+  .gallery-wide {
+    grid-column: auto;
+  }
   /* Why Travel Features responsive */
   .why-travel-grid {
     grid-template-columns: 1fr;
+  }
+  .home-category-bar {
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 12px;
+    border-radius: 20px;
+  }
+  .home-category-pill {
+    padding: 10px 14px;
+    border-radius: 16px;
+    min-width: 120px;
+  }
+  .home-category-pill strong {
+    font-size: 0.85rem;
+  }
+  .home-category-pill span {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-category-bar {
+    gap: 8px;
+    padding: 8px 10px;
+  }
+  .home-category-pill {
+    padding: 8px 12px;
+    border-radius: 12px;
+    min-width: 100px;
+  }
+  .home-category-pill strong {
+    font-size: 0.8rem;
+  }
+  .home-category-pill span {
+    font-size: 0.65rem;
   }
 }
 
@@ -666,5 +825,42 @@
   .search-pill-container {
     padding: 20px 16px !important;
     border-radius: 16px !important;
+  }
+  .home-category-bar {
+    gap: 6px;
+    padding: 6px 8px;
+    border-radius: 16px;
+    width: 100%;
+  }
+  .home-category-pill {
+    padding: 6px 10px;
+    border-radius: 10px;
+    flex: 1;
+    min-width: 80px;
+    text-align: center;
+    align-items: center;
+  }
+  .home-category-pill strong {
+    font-size: 0.75rem;
+  }
+  .home-category-pill span {
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .home-category-bar {
+    gap: 4px;
+    padding: 4px 6px;
+  }
+  .home-category-pill {
+    padding: 6px 8px;
+    border-radius: 8px;
+  }
+  .home-category-pill strong {
+    font-size: 0.7rem;
+  }
+  .home-category-pill span {
+    display: none;
   }
 }
