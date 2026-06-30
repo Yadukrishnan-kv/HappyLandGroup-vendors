@@ -100,43 +100,17 @@ export const CategoryTours = () => {
   return (
     <div className="tours-wrapper">
       
-      {/* Category Hero / Editorial Header */}
-      <section className="tours-hero" style={{ padding: '140px 0 40px' }}>
-        <div className="container">
-          
-          {/* Back Navigation Link with dynamic horizontial-glide styling */}
-          <div style={{ marginBottom: '35px', display: 'flex', justifyContent: 'flex-start' }}>
-            <Link 
-              to="/" 
-              className="back-concierge-link" 
-              style={{ 
-                display: 'inline-flex', 
-                alignItems: 'center', 
-                gap: '8px', 
-                color: 'var(--primary-gold)', 
-                fontWeight: 600, 
-                textDecoration: 'none', 
-                background: 'rgba(0, 0, 0, 0.02)', 
-                padding: '10px 24px', 
-                borderRadius: '40px', 
-                border: '1px solid rgba(184, 134, 11, 0.15)', 
-                transition: 'all 0.3s' 
-              }}
-            >
-              <FiArrowLeft size={16} /> Return to Voyages
-            </Link>
-          </div>
-
-          <div style={{ borderBottom: '1px solid var(--border-light)', paddingBottom: '30px', marginBottom: '10px' }}>
-            <span className="luxury-badge">{config.badge}</span>
-            <h1 className="editorial-title mt-10" style={{ fontSize: '3.5rem', margin: '10px 0 0 0' }}>
-              {config.editorialTitle}
-            </h1>
-            <p className="hero-desc" style={{ maxWidth: '650px', margin: '20px 0 0 0', color: 'var(--text-muted)', fontSize: '1.05rem', lineHeight: '1.7' }}>
-              {config.description}
-            </p>
-          </div>
-        </div>
+      {/* Hero Section */}
+      <section className="banner-hero" style={{
+        ...styles.hero,
+        backgroundImage: `url("${categoryName?.toLowerCase() === 'uae-tours' 
+          ? 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=2070&q=80' 
+          : 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=2070&q=80'}")`
+      }}>
+        <div style={styles.heroOverlay}></div>
+        <h1 className="banner-title" style={styles.heroTitle}>
+          {categoryName?.toLowerCase() === 'uae-tours' ? 'UAE' : 'International'} <span style={{color: 'var(--primary)'}}>Tours</span>
+        </h1>
       </section>
 
       {/* Main Tours Grid */}
@@ -198,6 +172,35 @@ export const CategoryTours = () => {
 
     </div>
   );
+};
+
+
+const styles = {
+  hero: {
+    height: '400px',
+    backgroundImage: 'url("https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?q=80&w=2070&auto=format&fit=crop")',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+  },
+  heroOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0,0,0,0.3)',
+  },
+  heroTitle: {
+    fontSize: '4rem',
+    fontWeight: '800',
+    color: 'white',
+    position: 'relative',
+    zIndex: 1,
+  }
 };
 
 export default CategoryTours;

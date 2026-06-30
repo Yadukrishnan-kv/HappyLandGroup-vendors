@@ -3,7 +3,7 @@ import { MapPin, Route, Users, Search } from 'lucide-react';
 
 const SearchBox = () => {
   return (
-    <div style={styles.searchBox}>
+    <div className="home-search-box" style={styles.searchBox}>
       <div style={styles.inputGroup}>
         <div style={styles.iconWrapper}>
           <MapPin size={24} color="var(--primary)" />

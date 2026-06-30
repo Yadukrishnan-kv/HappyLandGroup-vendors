@@ -47,8 +47,8 @@ const Login = () => {
   };
 
   return (
-    <div className="container" style={styles.page}>
-      <div style={styles.imageCol}>
+    <div className="container login-page-container" style={styles.page}>
+      <div className="auth-image-col" style={styles.imageCol}>
         <img 
           src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?q=80&w=1974&auto=format&fit=crop" 
           alt="Travel" 
@@ -56,7 +56,7 @@ const Login = () => {
         />
       </div>
       
-      <div style={styles.formCol}>
+      <div className="auth-form-col" style={styles.formCol}>
         <div style={styles.formContainer}>
           <div style={styles.header}>
             <h1 style={styles.title}>Welcome</h1>

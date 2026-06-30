@@ -10,14 +10,6 @@ import '../styles/pages/inner.css';
 const About = () => {
   const navigate = useNavigate();
 
-  const points = [
-    "UAE Tourist, Resident, and Work Visas",
-    "Tailored Corporate & B2B Travel Solutions",
-    "Bespoke Excursion & Desert Tour Packages",
-    "Premium Hotel & Yacht Accommodations",
-    "Serving Globally from Dubai/Ajman Since 2006"
-  ];
-
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterSuccess, setNewsletterSuccess] = useState(false);
 
@@ -38,28 +30,38 @@ const About = () => {
   return (
     <div>
       {/* Hero Section */}
-      <section style={styles.hero}>
+      <section className="banner-hero" style={styles.hero}>
         <div style={styles.heroOverlay}></div>
-        <h1 style={styles.heroTitle}>About <span style={{color: 'var(--primary)'}}>Us</span></h1>
+        <h1 className="banner-title" style={styles.heroTitle}>About <span style={{color: 'var(--primary)'}}>Us</span></h1>
       </section>
 
       {/* Info Section (New Layout with Old Text) */}
-      <section className="container" style={styles.infoSection}>
-        <div style={styles.infoContent}>
+      <section className="container info-section-container" style={styles.infoSection}>
+        <div className="info-content" style={styles.infoContent}>
           <div style={styles.infoBlock}>
-            <h2 style={styles.infoTitle}>Who <span style={{color: 'var(--primary)'}}>We Are?</span></h2>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
+              <div className="about-card-icon" style={{ flexShrink: 0, margin: 0 }}>
+                <FiTarget size={24} />
+              </div>
+              <h2 style={{ ...styles.infoTitle, marginBottom: 0 }}>Our <span style={{color: 'var(--primary)'}}>Mission</span></h2>
+            </div>
             <p style={styles.infoDesc}>
-              <strong>Happy Land Group Ventures</strong> is a renowned travel agency based in UAE, Dubai, founded in the year 2006. For nearly two decades, we have served as a leading destination management company, offering elite travel and tourism services across both corporate and individual tiers. We specialize in UAE tourist visas, resident visas, work visas, flight arrangements, boutique accommodations, and breathtaking excursions. We take pride in building robust, long-term B2B relationships and crafting highly customized luxury travel experiences.
+              Our mission is to offer fast, hassle-free, and one-stop destination management services. We thrive to lead destination management in the UAE by delivering unmatched travel and tourism experiences.
             </p>
           </div>
           <div style={styles.infoBlock}>
-            <h2 style={styles.infoTitle}>Our <span style={{color: 'var(--primary)'}}>Mission</span></h2>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '15px' }}>
+              <div className="about-card-icon" style={{ flexShrink: 0, margin: 0 }}>
+                <FiEye size={24} />
+              </div>
+              <h2 style={{ ...styles.infoTitle, marginBottom: 0 }}>Our <span style={{color: 'var(--primary)'}}>Vision</span></h2>
+            </div>
             <p style={styles.infoDesc}>
-              Our mission is to offer fast, hassle-free, and one-stop destination management services. We thrive to lead destination management in the UAE by delivering unmatched travel and tourism experiences. Our vision is to provide quality services and build reliable relationships with B2B and B2C clients in order to offer outstanding services in the global travel industry.
+              Our vision is to provide quality services and build reliable relationships with B2B and B2C clients in order to offer outstanding services in the global travel industry.
             </p>
           </div>
         </div>
-        <div style={styles.infoImageWrapper}>
+        <div className="info-image-wrapper" style={styles.infoImageWrapper}>
           <img 
             src="https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?q=80&w=2080&auto=format&fit=crop" 
             alt="Travel group" 
@@ -68,80 +70,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Why Choose Us Section (Old layout kept) */}
-      <section className="section" style={{ backgroundColor: 'var(--bg-soft)' }}>
-        <div className="container">
-          <div className="about-grid about-choose-grid">
-            
-            {/* Left Column: List and Achievements */}
-            <div className="flex-col about-col-content">
-              <span className="luxury-badge">Why Choose Us</span>
-              <h2 className="editorial-title mt-20 mb-20 about-section-subtitle">
-                Dedicated to <em>flawless execution</em>
-              </h2>
-              <p className="hero-desc about-paragraph mb-30">
-                Whether managing complex corporate visa services, multi-city group operations, or curating high-end bespoke holiday itineraries, our expert Ajman-based operations ensure seamless reliability.
-              </p>
-              
-              <ul className="about-list">
-                {points.map((pt, idx) => (
-                  <motion.li 
-                    key={idx}
-                    className="about-list-item"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: idx * 0.1, duration: 0.5 }}
-                  >
-                    <div className="about-list-icon">
-                      <FiCheck size={14} />
-                    </div>
-                    {pt}
-                  </motion.li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Right Column: Mission and Vision Cards */}
-            <div className="flex-col about-cards-col">
-              {/* Mission Card */}
-              <motion.div 
-                className="about-glass-card"
-                whileHover={{ y: -5 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              >
-                <div className="about-card-header">
-                  <div className="about-card-icon">
-                    <FiTarget size={22} />
-                  </div>
-                  <h3 className="about-card-title">Our Mission</h3>
-                </div>
-                <p className="about-card-desc">
-                  Our mission is to offer fast, hassle-free, and one-stop destination management services. We thrive to lead destination management in the UAE by delivering unmatched travel and tourism experiences.
-                </p>
-              </motion.div>
-
-              {/* Vision Card */}
-              <motion.div 
-                className="about-glass-card"
-                whileHover={{ y: -5 }}
-                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              >
-                <div className="about-card-header">
-                  <div className="about-card-icon">
-                    <FiEye size={22} />
-                  </div>
-                  <h3 className="about-card-title">Our Vision</h3>
-                </div>
-                <p className="about-card-desc">
-                  Our vision is to provide quality services and build reliable relationships with B2B and B2C clients in order to offer outstanding services in the global travel industry.
-                </p>
-              </motion.div>
-            </div>
-
-          </div>
-        </div>
-      </section>
 
       {/* Services Section */}
       <div style={{ backgroundColor: '#f9fafb', padding: '40px 0' }}>

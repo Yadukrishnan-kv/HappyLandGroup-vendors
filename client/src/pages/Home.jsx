@@ -195,8 +195,8 @@ export const Home = () => {
   return (
     <div className="home-wrapper" style={{ backgroundColor: 'var(--bg-white)', color: 'var(--text-dark)' }}>
       {/* Hero Section */}
-      <section className="container" style={styles.heroSection}>
-        <div style={styles.heroContent}>
+      <section className="container hero-section-container" style={styles.heroSection}>
+        <div className="hero-content" style={styles.heroContent}>
           <div style={{...styles.tag, marginTop: '30px'}}>
             <span style={styles.tagText}>Know Before You Go</span>
             <Globe2 size={16} color="white" fill="white" style={styles.tagIcon} />
@@ -208,7 +208,7 @@ export const Home = () => {
             Happy Land Group Ventures curates the UAE's finest bespoke travel experiences, offering elite destination management, visa processing, and breathtaking excursions since 2006.
           </p>
         </div>
-        <div style={styles.heroImages}>
+        <div className="hero-images" style={styles.heroImages}>
           <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2021&auto=format&fit=crop" alt="Travel 1" style={{...styles.heroImg, marginTop: '40px'}} />
           <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=2070&auto=format&fit=crop" alt="Travel 2" style={{...styles.heroImg, marginTop: '20px'}} />
           <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070&auto=format&fit=crop" alt="Travel 3" style={styles.heroImg} />
@@ -329,14 +329,14 @@ export const Home = () => {
 
 
       {/* Experience Section */}
-      <section className="container" style={{...styles.section, ...styles.experienceSection}}>
-        <div style={styles.expContent}>
+      <section className="container experience-section-container" style={{...styles.section, ...styles.experienceSection}}>
+        <div className="experience-content" style={styles.expContent}>
           <span style={styles.sectionTag}>Experience</span>
           <h2 style={styles.sectionTitle}>With our all experience we will serve you</h2>
           <p style={styles.expDesc}>
             Whether managing complex corporate visa services, multi-city group operations, or curating high-end bespoke holiday itineraries, our expert Ajman-based operations ensure seamless reliability.
           </p>
-          <div style={styles.stats}>
+          <div className="experience-stats" style={styles.stats}>
             <div style={styles.statItem}>
               <div style={styles.statBox}>18k+</div>
               <div style={styles.statLabel}>Clients Serviced</div>
@@ -351,8 +351,8 @@ export const Home = () => {
             </div>
           </div>
         </div>
-        <div style={styles.expImageWrapper}>
-          <div className="experience-img-collage" style={{ width: '100%', maxWidth: '600px', height: '480px' }}>
+        <div className="experience-image-wrapper" style={styles.expImageWrapper}>
+          <div className="experience-img-collage" style={{ width: '100%', maxWidth: '600px' }}>
             <img 
               src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=2070&auto=format&fit=crop" 
               alt="Dubai Skyline" 
@@ -375,7 +375,7 @@ export const Home = () => {
         </div>
 
         {/* Row 1: 1 large left (50%), 2 right side-by-side (25% each) */}
-        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '14px', marginBottom: '14px' }}>
+        <div className="gallery-row-1" style={{ display: 'grid', gap: '14px', marginBottom: '14px' }}>
           
           <div style={{ height: '320px', borderRadius: '16px', overflow: 'hidden' }}>
             <img
@@ -410,7 +410,7 @@ export const Home = () => {
         </div>
 
         {/* Row 2: 3 equal images */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '14px' }}>
+        <div className="gallery-row-2" style={{ display: 'grid', gap: '14px' }}>
           
           <div style={{ height: '260px', borderRadius: '16px', overflow: 'hidden' }}>
             <img
@@ -722,9 +722,9 @@ export const Home = () => {
 
       {/* Subscribe Section */}
       <section style={styles.subscribeSection}>
-        <div className="container" style={styles.subscribeContainer}>
+        <div className="container subscribe-container" style={styles.subscribeContainer}>
           {/* Left: Text + Form */}
-          <div style={styles.subscribeContent}>
+          <div className="subscribe-content" style={styles.subscribeContent}>
             <span style={styles.subscribeTagline}>Newsletter</span>
             <h2 style={styles.subscribeTitle}>
               Subscribe now to get useful<br />traveling information
@@ -759,7 +759,7 @@ export const Home = () => {
             )}
           </div>
           {/* Right: Image */}
-          <div style={styles.subscribeImageWrapper}>
+          <div className="subscribe-image-wrapper" style={styles.subscribeImageWrapper}>
             <img
               src="https://images.unsplash.com/photo-1539635278303-d4002c07eae3?q=80&w=2070&auto=format&fit=crop"
               alt="Traveler"

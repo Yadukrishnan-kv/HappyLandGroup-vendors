@@ -79,46 +79,15 @@ export const Contact = () => {
     }
   };
 
+  
+
   return (
     <div className="contact-wrapper">
       
-      {/* Luxury Hero Banner Header */}
-      <section 
-        className="about-hero"
-        style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1920&q=80')`
-        }}
-      >
-        <div className="about-hero-overlay"></div>
-        <div className="about-hero-content">
-          <motion.span 
-            className="luxury-badge contact-hero-badge"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            Get In Touch
-          </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-            className="editorial-title"
-          >
-            {contactInfo.title.split(' ').map((word, i) => {
-              if (i === 1 || i === 3) return <em key={i}>{word} </em>;
-              return <span key={i}>{word} </span>;
-            })}
-          </motion.h1>
-          <motion.p
-            className="contact-hero-desc"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
-            {contactInfo.description}
-          </motion.p>
-        </div>
+      {/* Hero Section */}
+      <section className="banner-hero" style={styles.hero}>
+        <div style={styles.heroOverlay}></div>
+        <h1 className="banner-title" style={styles.heroTitle}>Contact <span style={{color: 'var(--primary)'}}>Us</span></h1>
       </section>
 
       {/* Main Content Layout */}
@@ -333,6 +302,35 @@ export const Contact = () => {
       </div>
     </div>
   );
+};
+
+
+const styles = {
+  hero: {
+    height: '400px',
+    backgroundImage: 'url("https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=2070&q=80")',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+  },
+  heroOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0,0,0,0.3)',
+  },
+  heroTitle: {
+    fontSize: '4rem',
+    fontWeight: '800',
+    color: 'white',
+    position: 'relative',
+    zIndex: 1,
+  }
 };
 
 export default Contact;

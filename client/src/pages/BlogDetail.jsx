@@ -53,14 +53,14 @@ const BlogDetail = () => {
   return (
     <div className="inner-page-container">
       {/* Hero Banner */}
-      <div style={{ position: 'relative', height: '60vh', width: '100%', overflow: 'hidden' }}>
+      <div style={{ position: 'relative', minHeight: '350px', height: '55vh', width: '100%', overflow: 'hidden' }}>
         <img 
           src={getImageUrl(blog.coverImage)} 
           alt={blog.title} 
           onError={handleImageError}
           style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'brightness(0.6)' }}
         />
-        <div className="container" style={{ position: 'absolute', bottom: '0', left: '0', right: '0', padding: '60px 0', zIndex: 2 }}>
+        <div className="container blog-detail-hero-content" style={{ position: 'absolute', bottom: '0', left: '0', right: '0', padding: '30px 20px', zIndex: 2 }}>
           <Link to="/blogs" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', color: 'var(--primary-gold)', marginBottom: '20px', fontWeight: 'bold' }}>
             <FiArrowLeft /> Back to Journals
           </Link>
@@ -71,10 +71,10 @@ const BlogDetail = () => {
               </span>
             ))}
           </div>
-          <h1 className="editorial-title" style={{ fontSize: '3.5rem', color: 'var(--text-white)', marginBottom: '20px', maxWidth: '800px' }}>
+          <h1 className="editorial-title" style={{ fontSize: 'clamp(1.8rem, 5vw, 3.5rem)', color: 'var(--text-white)', marginBottom: '20px', maxWidth: '800px', lineHeight: '1.2' }}>
             {blog.title}
           </h1>
-          <div style={{ display: 'flex', gap: '20px', color: 'var(--text-light)' }}>
+          <div style={{ display: 'flex', gap: '20px', color: 'var(--text-light)', flexWrap: 'wrap' }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><FiUser /> {blog.author}</span>
             <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}><FiClock /> {new Date(blog.publishedAt).toLocaleDateString()}</span>
           </div>
@@ -83,12 +83,12 @@ const BlogDetail = () => {
       </div>
 
       {/* Content */}
-      <div className="container" style={{ padding: '60px 0', maxWidth: '800px', margin: '0 auto' }}>
+      <div className="container blog-detail-body" style={{ padding: '40px 20px', maxWidth: '800px', margin: '0 auto' }}>
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           className="blog-content"
-          style={{ color: 'var(--text-light)', fontSize: '1.1rem', lineHeight: '1.8' }}
+          style={{ color: 'var(--text-light)', fontSize: '1.05rem', lineHeight: '1.8' }}
           dangerouslySetInnerHTML={{ __html: blog.content }}
         />
       </div>

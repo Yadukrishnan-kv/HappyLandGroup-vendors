@@ -55,8 +55,8 @@ const Register = () => {
   };
 
   return (
-    <div className="container" style={styles.page}>
-      <div style={styles.imageCol}>
+    <div className="container register-page-container" style={styles.page}>
+      <div className="auth-image-col" style={styles.imageCol}>
         <img 
           src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?q=80&w=1974&auto=format&fit=crop" 
           alt="Travel" 
@@ -64,7 +64,7 @@ const Register = () => {
         />
       </div>
       
-      <div style={styles.formCol}>
+      <div className="auth-form-col" style={styles.formCol}>
         <div style={styles.formContainer}>
           <div style={styles.header}>
             <h1 style={styles.title}>CREATE AN ACCOUNT</h1>

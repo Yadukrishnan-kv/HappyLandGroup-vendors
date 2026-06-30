@@ -49,7 +49,7 @@ const Blogs = () => {
             No journal entries available at the moment.
           </div>
         ) : (
-          <div className="tours-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '30px' }}>
+          <div className="tours-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '30px' }}>
             {blogs.map((blog, idx) => (
               <motion.div 
                 key={blog._id}

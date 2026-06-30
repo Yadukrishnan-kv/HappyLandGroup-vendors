@@ -93,3 +93,204 @@
     padding: 0 12px;
   }
 }
+
+/* ==========================================================================
+   Custom Responsive Redesign Overrides
+   ========================================================================== */
+
+/* Page Banners */
+.banner-hero {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 400px !important;
+}
+.banner-title {
+  font-size: 4.5rem !important;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+@media (max-width: 1024px) {
+  .banner-hero {
+    height: 350px !important;
+  }
+  .banner-title {
+    font-size: 3.5rem !important;
+  }
+}
+@media (max-width: 768px) {
+  .banner-hero {
+    height: 280px !important;
+  }
+  .banner-title {
+    font-size: 2.8rem !important;
+  }
+}
+@media (max-width: 480px) {
+  .banner-hero {
+    height: 220px !important;
+  }
+  .banner-title {
+    font-size: 2.2rem !important;
+  }
+}
+
+/* Home Page: Hero Banner Section */
+@media (max-width: 992px) {
+  .hero-section-container {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 30px !important;
+    padding: 60px 20px !important;
+  }
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero-images {
+    justify-content: center !important;
+    width: 100% !important;
+    flex-wrap: wrap !important;
+  }
+}
+@media (max-width: 576px) {
+  .hero-images img {
+    width: 90px !important;
+    height: 180px !important;
+    margin-top: 0 !important;
+  }
+  .hero-images {
+    gap: 10px !important;
+  }
+}
+
+/* Home Page: Experience Section */
+@media (max-width: 992px) {
+  .experience-section-container {
+    flex-direction: column !important;
+    gap: 40px !important;
+  }
+  .experience-content {
+    width: 100% !important;
+    text-align: center !important;
+  }
+  .experience-stats {
+    justify-content: center !important;
+  }
+  .experience-image-wrapper {
+    width: 100% !important;
+  }
+}
+@media (max-width: 480px) {
+  .experience-stats {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 20px !important;
+  }
+  .experience-img-collage {
+    height: 280px !important;
+  }
+  .exp-img-1 {
+    height: 240px !important;
+  }
+  .exp-img-2 {
+    height: 150px !important;
+    border-width: 4px !important;
+  }
+}
+
+/* Home Page: Gallery Section */
+.gallery-row-1 {
+  grid-template-columns: 2fr 1fr 1fr;
+}
+.gallery-row-2 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+@media (max-width: 768px) {
+  .gallery-row-1, .gallery-row-2 {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+  .gallery-row-1 {
+    margin-bottom: 10px !important;
+  }
+  .gallery-row-1 > div, .gallery-row-2 > div {
+    height: 220px !important;
+  }
+}
+
+/* Home Page: Subscribe/Newsletter Section */
+@media (max-width: 992px) {
+  .subscribe-container {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 40px !important;
+    padding: 0 20px !important;
+  }
+  .subscribe-content {
+    max-width: 100% !important;
+  }
+  .subscribe-image-wrapper {
+    justify-content: center !important;
+    width: 100% !important;
+    min-height: auto !important;
+  }
+  .subscribe-image {
+    max-width: 320px !important;
+  }
+}
+
+/* About Page: Info (Mission/Vision) Section */
+@media (max-width: 992px) {
+  .info-section-container {
+    flex-direction: column-reverse !important;
+    gap: 40px !important;
+  }
+  .info-content {
+    width: 100% !important;
+  }
+  .info-image-wrapper {
+    width: 100% !important;
+    height: 350px !important;
+  }
+}
+@media (max-width: 480px) {
+  .info-image-wrapper {
+    height: 250px !important;
+  }
+}
+
+/* Authentication Pages (Login & Register) */
+@media (max-width: 992px) {
+  .login-page-container, .register-page-container {
+    flex-direction: column !important;
+    gap: 40px !important;
+    padding: 40px 20px !important;
+  }
+  .auth-image-col {
+    max-height: 350px !important;
+    width: 100% !important;
+  }
+  .auth-form-col {
+    width: 100% !important;
+  }
+}
+@media (max-width: 768px) {
+  .auth-image-col {
+    display: none !important;
+  }
+  .login-page-container, .register-page-container {
+    padding: 30px 15px !important;
+    min-height: auto !important;
+  }
+}
+
+/* Hide SearchBox on mobile viewport */
+@media (max-width: 768px) {
+  .home-search-box {
+    display: none !important;
+  }
+}
+
