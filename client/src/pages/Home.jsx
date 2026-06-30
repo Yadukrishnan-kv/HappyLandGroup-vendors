@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
 import API from '../api';
 import Card from '../components/common/Card';
 import Skeleton from '../components/common/Skeleton';
@@ -15,6 +19,11 @@ import {
 import * as Icons from 'react-icons/fi';
 import { getImageUrl, handleImageError } from '../utils/imageHelper';
 import '../styles/pages/home.css';
+import { Globe2 } from 'lucide-react';
+import SearchBox from '../components/home/SearchBox';
+import TourCard from '../components/home/TourCard';
+import '../index.css'; // ensure global styles for .btn etc
+
 
 
 export const Home = () => {
@@ -181,151 +190,115 @@ export const Home = () => {
   
   const [activeTestimonial, setActiveTestimonial] = useState(0);
 
+  
+
   return (
-    <div className="home-wrapper">
-      
-      {/* 1. HERO SECTION */}
-      <section className="hero-section">
-        <div className="container">
-          <div className="hero-grid">
-            
-            {/* Left Info Column */}
-            <div className="hero-info">
-              <div className="hero-badge">
-                <span className="luxury-badge">Elite UAE Destination Management</span>
-              </div>
-              <h1 className="hero-title">
-                Traveling opens <br />
-                the door to creating <br />
-                <span>memories</span>
-              </h1>
-              <p className="hero-desc">
-                Happy Land Group Ventures curates the UAE's most exquisite travel experiences. From spectacular desert dunes to Burj Khalifa lounges, we design bespoke itineraries and premium visa solutions.
-              </p>
-
-                {/* Transparent Glassmorphic Category Bar */}
-                <div className="home-category-bar">
-                  <button
-                    type="button"
-                    className="home-category-pill"
-                    onClick={() => handleCategorySelect('uae-tours')}
-                  >
-                    <strong>UAE Tours</strong>
-                    <span>Desert & City</span>
-                  </button>
-                  
-                  <button
-                    type="button"
-                    className="home-category-pill"
-                    onClick={() => handleCategorySelect('international-tours')}
-                  >
-                    <strong>International Tours</strong>
-                    <span>World escapes</span>
-                  </button>
-                  
-                  <button
-                    type="button"
-                    className="home-category-pill"
-                    onClick={() => handleCategorySelect('pilgrims')}
-                  >
-                    <strong>Pilgrims</strong>
-                    <span>Spiritual trips</span>
-                  </button>
-                </div>
-            </div>
-
-            {/* Right Collage Column */}
-            <div className="hero-collage-wrap">
-              <div className="glow-circle"></div>
-              
-              <div className="collage-item collage-1 anim-float">
-                <img 
-                  src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&q=80" 
-                  alt="UAE desert dunes" 
-                  onError={handleImageError}
-                />
-              </div>
-              <div className="collage-item collage-2 anim-float-slow" style={{ animationDelay: '1.5s' }}>
-                <img 
-                  src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80" 
-                  alt="Burj Khalifa Skyline" 
-                  onError={handleImageError}
-                />
-              </div>
-              <div className="collage-item collage-3 anim-float" style={{ animationDelay: '3s' }}>
-                <img 
-                  src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=600&q=80" 
-                  alt="Abu Dhabi Grand Mosque" 
-                  onError={handleImageError}
-                />
-              </div>
-            </div>
-
+    <div className="home-wrapper" style={{ backgroundColor: 'var(--bg-white)', color: 'var(--text-dark)' }}>
+      {/* Hero Section */}
+      <section className="container" style={styles.heroSection}>
+        <div style={styles.heroContent}>
+          <div style={{...styles.tag, marginTop: '30px'}}>
+            <span style={styles.tagText}>Know Before You Go</span>
+            <Globe2 size={16} color="white" fill="white" style={styles.tagIcon} />
           </div>
+          <h1 style={styles.heroTitle}>
+            Traveling opens the door to creating <span style={{color: 'var(--primary)'}}>memories</span>
+          </h1>
+          <p style={styles.heroDesc}>
+            Happy Land Group Ventures curates the UAE's finest bespoke travel experiences, offering elite destination management, visa processing, and breathtaking excursions since 2006.
+          </p>
+        </div>
+        <div style={styles.heroImages}>
+          <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2021&auto=format&fit=crop" alt="Travel 1" style={{...styles.heroImg, marginTop: '40px'}} />
+          <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=2070&auto=format&fit=crop" alt="Travel 2" style={{...styles.heroImg, marginTop: '20px'}} />
+          <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070&auto=format&fit=crop" alt="Travel 3" style={styles.heroImg} />
         </div>
       </section>
 
-      {/* 2. SERVICES SECTION */}
-      <section className="services-section section">
-        <div className="container">
-          <div className="services-header" style={{ marginBottom: '50px' }}>
-            <span className="luxury-badge">Complete Travel Portfolio</span>
-            <h2 className="editorial-title mt-20" style={{ fontSize: '3rem' }}>
-              Our <em>specialized</em> premium services
-            </h2>
-            <p className="hero-desc" style={{ maxWidth: '800px', marginTop: '15px' }}>
-              We offer standard-setting corporate, individual, and B2B agent models backed by over a decade of verified destination management in Ajman and Dubai.
-            </p>
-          </div>
+      {/* Search Box */}
+      <SearchBox />
 
-          <div className="grid-3" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '30px' }}>
-            {servicesLoading ? (
-              <>
-                <Skeleton type="card" />
-                <Skeleton type="card" />
-                <Skeleton type="card" />
-              </>
-            ) : services.length > 0 ? (
-              services.map((service) => (
-                <motion.div 
-                  key={service._id}
-                  onClick={() => navigate(`/services/${service._id}`)}
-                  className="service-card glass-hover" 
-                  style={{ 
-                    display: 'flex', 
-                    flexDirection: 'column', 
-                    gap: '15px', 
-                    padding: '35px', 
-                    borderRadius: '20px', 
-                    border: '1px solid rgba(255,255,255,0.06)',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s ease'
-                  }}
-                  whileHover={{ y: -8, borderColor: 'rgba(212, 175, 55, 0.25)' }}
-                >
-                  <div className="service-icon-wrap" style={{ width: '60px', height: '60px', borderRadius: '15px', backgroundColor: 'var(--primary-light)', color: 'var(--primary)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    {renderIcon(service.icon)}
+      {/* Services Section */}
+      <section className="container" style={styles.servicesSection}>
+        <div style={styles.servicesHeader}>
+          <span style={styles.servicesTagline}>What we serve</span>
+          <h2 style={styles.servicesTitle}>We offer our best services</h2>
+        </div>
+        <div style={{...styles.servicesCards, display: 'block', minWidth: 0}}>
+          {servicesLoading ? (
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px' }}>
+              <Skeleton type="card" />
+              <Skeleton type="card" />
+              <Skeleton type="card" />
+            </div>
+          ) : services.length > 0 ? (
+            <Swiper
+              modules={[Pagination, Autoplay]}
+              spaceBetween={20}
+              slidesPerView={1}
+              pagination={{ clickable: true }}
+              autoplay={{ delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true }}
+              loop={true}
+              breakpoints={{
+                640: { slidesPerView: 1 },
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+              }}
+              style={{ paddingBottom: '40px' }} // Space for pagination
+            >
+              {services.map(service => (
+                <SwiperSlide key={service._id}>
+                  <div className="service-card-hover" style={styles.serviceCard} onClick={() => navigate(`/services/${service._id}`)}>
+                    <div style={styles.serviceIconWrapper}>
+                      {renderIcon(service.icon)}
+                    </div>
+                    <h3 style={styles.serviceCardTitle}>{service.name}</h3>
+                    <p style={styles.serviceCardDesc}>{service.shortDescription}</p>
                   </div>
-                  <h3 style={{ fontSize: '1.3rem', fontWeight: '600' }}>{service.name}</h3>
-                  <p style={{ fontSize: '0.92rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>{service.shortDescription}</p>
-                </motion.div>
-              ))
-            ) : (
-              <p style={{ gridColumn: 'span 3', textAlign: 'center', color: 'var(--subtext)' }}>
-                No premium services currently available.
-              </p>
-            )}
-          </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          ) : (
+            <Swiper
+              modules={[Pagination, Autoplay]}
+              spaceBetween={20}
+              slidesPerView={1}
+              pagination={{ clickable: true }}
+              autoplay={{ delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true }}
+              loop={true}
+              breakpoints={{
+                640: { slidesPerView: 1 },
+                768: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+              }}
+              style={{ paddingBottom: '40px' }}
+            >
+              {[
+                { id: 's1', icon: 'FiMapPin', name: 'Tour Packages', desc: 'Curated luxury tours across UAE and beyond, tailored for every traveller.' },
+                { id: 's2', icon: 'FiFileText', name: 'Visa Services', desc: 'Fast, hassle-free UAE tourist, resident and work visa processing.' },
+                { id: 's3', icon: 'FiBriefcase', name: 'Corporate Travel', desc: 'Tailored B2B travel and destination management solutions for businesses.' },
+              ].map(service => (
+                <SwiperSlide key={service.id}>
+                  <div className="service-card-hover" style={styles.serviceCard}>
+                    <div style={styles.serviceIconWrapper}>
+                      {renderIcon(service.icon)}
+                    </div>
+                    <h3 style={styles.serviceCardTitle}>{service.name}</h3>
+                    <p style={styles.serviceCardDesc}>{service.desc}</p>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          )}
         </div>
       </section>
-
-      {/* 3. FEATURED TOURS */}
-      <section className="featured-section section">
+      {/* 3. FEATURED TOURS SECTION */}
+      <section className="featured-tours-section section" style={{ background: 'var(--white)', position: 'relative' }}>
         <div className="container">
-          <div className="flex-between mb-40 flex-wrap gap-20">
+          <div className="flex-between mb-50 flex-wrap gap-20">
             <div>
               <span className="luxury-badge">Signature Excursions</span>
-              <h2 className="editorial-title mt-10" style={{ fontSize: '3rem' }}>
+              <h2 className="editorial-title mt-10" style={{ fontSize: '3.2rem' }}>
                 Featured <em>UAE</em> itineraries
               </h2>
             </div>
@@ -334,7 +307,7 @@ export const Home = () => {
             </button>
           </div>
 
-          <div className="grid-3">
+          <div className="grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '30px', marginTop: '30px' }}>
             {loading ? (
               <>
                 <Skeleton type="card" />
@@ -354,124 +327,125 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* 4. EXPERIENCE SECTION */}
-      <section className="experience-section section">
-        <div className="container">
-          <div className="experience-grid">
-            
-            {/* Left Counters Column */}
-            <div className="experience-text">
-              <span className="luxury-badge">Nearly Two Decades of Excellence</span>
-              <h2 className="editorial-title mt-20" style={{ fontSize: '3rem', marginBottom: '24px' }}>
-                With our <em>rich history</em>, we will serve you
-              </h2>
-              <p className="hero-desc" style={{ marginBottom: '30px', lineHeight: '1.7' }}>
-                Since 2006, Happy Land Group Ventures has delivered outstanding visa processing and bespoke excursions. We coordinate flawless, end-to-end logistics so that your only focus is absorbing stunning landscapes and creating lasting memories.
-              </p>
 
-              <div className="experience-counters">
-                <div className="counter-item">
-                  <div className="counter-num">18k+</div>
-                  <div className="counter-label">Clients Serviced</div>
-                </div>
-                <div className="counter-item">
-                  <div className="counter-num">20+</div>
-                  <div className="counter-label">Expert Coordinators</div>
-                </div>
-                <div className="counter-item">
-                  <div className="counter-num">15+</div>
-                  <div className="counter-label">Years of Experience</div>
-                </div>
-              </div>
+      {/* Experience Section */}
+      <section className="container" style={{...styles.section, ...styles.experienceSection}}>
+        <div style={styles.expContent}>
+          <span style={styles.sectionTag}>Experience</span>
+          <h2 style={styles.sectionTitle}>With our all experience we will serve you</h2>
+          <p style={styles.expDesc}>
+            Whether managing complex corporate visa services, multi-city group operations, or curating high-end bespoke holiday itineraries, our expert Ajman-based operations ensure seamless reliability.
+          </p>
+          <div style={styles.stats}>
+            <div style={styles.statItem}>
+              <div style={styles.statBox}>18k+</div>
+              <div style={styles.statLabel}>Clients Serviced</div>
             </div>
-
-            {/* Right overlapping images */}
-            <div className="experience-img-collage">
-              <img 
-                src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=700&q=80" 
-                alt="Dubai skyline luxury view" 
-                className="exp-img-1"
-                onError={handleImageError}
-              />
-              <img 
-                src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=500&q=80" 
-                alt="Abu Dhabi Grand Mosque" 
-                className="exp-img-2 animate-float"
-                onError={handleImageError}
-              />
+            <div style={styles.statItem}>
+              <div style={styles.statBox}>20+</div>
+              <div style={styles.statLabel}>Expert Coordinators</div>
             </div>
-
+            <div style={styles.statItem}>
+              <div style={styles.statBox}>15+</div>
+              <div style={styles.statLabel}>Years of Experience</div>
+            </div>
+          </div>
+        </div>
+        <div style={styles.expImageWrapper}>
+          <div className="experience-img-collage" style={{ width: '100%', maxWidth: '600px', height: '480px' }}>
+            <img 
+              src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=2070&auto=format&fit=crop" 
+              alt="Dubai Skyline" 
+              className="exp-img-1"
+            />
+            <img 
+              src="https://images.unsplash.com/photo-1539635278303-d4002c07eae3?q=80&w=2070&auto=format&fit=crop" 
+              alt="Traveler Experience" 
+              className="exp-img-2"
+            />
           </div>
         </div>
       </section>
 
-      {/* 5. GALLERY MASONRY */}
-      <section className="gallery-section section">
-        <div className="container">
-          <div className="text-center mb-60">
-            <span className="luxury-badge">Visual Chronicles</span>
-            <h2 className="editorial-title mt-20" style={{ fontSize: '3.2rem' }}>
-              Our guests' <em>excursion</em> moments
-            </h2>
+      {/* Gallery Section */}
+      <section className="container" style={styles.section}>
+        <div style={styles.sectionHeader}>
+          <span style={styles.sectionTag}>Gallery</span>
+          <h2 style={styles.sectionTitle}>Visit our customers tour gallery</h2>
+        </div>
+
+        {/* Row 1: 1 large left (50%), 2 right side-by-side (25% each) */}
+        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gap: '14px', marginBottom: '14px' }}>
+          
+          <div style={{ height: '320px', borderRadius: '16px', overflow: 'hidden' }}>
+            <img
+              src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070&auto=format&fit=crop"
+              alt="Gallery 1"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.5s ease' }}
+              onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'}
+              onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
+            />
           </div>
 
-          <div className="gallery-grid">
-            <div className="gallery-item gallery-tall">
-              <img src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?auto=format&fit=crop&w=600&q=80" alt="Desert safari" onError={handleImageError} />
-              <div className="gallery-item-overlay">
-                <div className="gallery-text">Bespoke Safari</div>
-              </div>
-            </div>
-
-            <div className="gallery-item gallery-wide">
-              <img src="https://images.unsplash.com/photo-1567899378494-47b22a2ae96a?auto=format&fit=crop&w=1200&q=80" alt="Yacht marina" onError={handleImageError} />
-              <div className="gallery-item-overlay">
-                <div className="gallery-text">Yacht Marina Cruises</div>
-              </div>
-            </div>
-            <div className="gallery-item">
-              <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80" alt="Burj Khalifa skyline" onError={handleImageError} />
-              <div className="gallery-item-overlay">
-                <div className="gallery-text">Skyline Access</div>
-              </div>
-            </div>
-            <div className="gallery-item gallery-tall">
-              <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=600&q=80" alt="Abu Dhabi Mosque" onError={handleImageError} />
-              <div className="gallery-item-overlay">
-                <div className="gallery-text">Royal Grand Mosque</div>
-              </div>
-            </div>
-            <div className="gallery-item">
-              <img src="https://images.unsplash.com/photo-1508849789987-4e5333c12b78?auto=format&fit=crop&w=600&q=80" alt="Helicopter skyline ride" onError={handleImageError} />
-              <div className="gallery-item-overlay">
-                <div className="gallery-text">Helicopter Horizon</div>
-              </div>
-            </div>
-            <div className="gallery-item">
-              <img src="https://images.unsplash.com/photo-1526401485004-2ea8b4b0fc7f?auto=format&fit=crop&w=600&q=80" alt="Cultural Tour" onError={handleImageError} />
-              <div className="gallery-item-overlay">
-                <div className="gallery-text">Cultural Tour</div>
-              </div>
-            </div>
-            <div className="gallery-item">
-              <img src="https://images.unsplash.com/photo-1526401315065-8e5b86d4fe5e?auto=format&fit=crop&w=600&q=80" alt="Desert Sunset" onError={handleImageError} />
-              <div className="gallery-item-overlay">
-                <div className="gallery-text">Desert Sunset</div>
-              </div>
-            </div>
-            <div className="gallery-item gallery-wide">
-              <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=1200&q=80" alt="Marina Dhow cruise" onError={handleImageError} />
-              <div className="gallery-item-overlay">
-                <div className="gallery-text">Dhow Cruise Dining</div>
-              </div>
-            </div>
+          <div style={{ height: '320px', borderRadius: '16px', overflow: 'hidden' }}>
+            <img
+              src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=2070&auto=format&fit=crop"
+              alt="Gallery 2"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.5s ease' }}
+              onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'}
+              onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
+            />
           </div>
+
+          <div style={{ height: '320px', borderRadius: '16px', overflow: 'hidden' }}>
+            <img
+              src="https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=1974&auto=format&fit=crop"
+              alt="Gallery 3"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.5s ease' }}
+              onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'}
+              onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
+            />
+          </div>
+
+        </div>
+
+        {/* Row 2: 3 equal images */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '14px' }}>
+          
+          <div style={{ height: '260px', borderRadius: '16px', overflow: 'hidden' }}>
+            <img
+              src="https://images.unsplash.com/photo-1504150558240-0b4fd8946624?q=80&w=1964&auto=format&fit=crop"
+              alt="Gallery 4"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.5s ease' }}
+              onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'}
+              onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
+            />
+          </div>
+
+          <div style={{ height: '260px', borderRadius: '16px', overflow: 'hidden' }}>
+            <img
+              src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2070&auto=format&fit=crop"
+              alt="Gallery 5"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.5s ease' }}
+              onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'}
+              onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
+            />
+          </div>
+
+          <div style={{ height: '260px', borderRadius: '16px', overflow: 'hidden' }}>
+            <img
+              src="https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?q=80&w=2080&auto=format&fit=crop"
+              alt="Gallery 6"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.5s ease' }}
+              onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'}
+              onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}
+            />
+          </div>
+
         </div>
       </section>
 
-
-
-      {/* 6.5. BLOGS SECTION (JOURNAL) */}
+{/* 6.5. BLOGS SECTION (JOURNAL) */}
       <section className="blogs-section section" style={{ background: 'var(--bg-soft)', position: 'relative' }}>
         <div className="container">
           <div className="flex-between mb-40 flex-wrap gap-20">
@@ -486,7 +460,7 @@ export const Home = () => {
             </button>
           </div>
 
-          <div className="grid-3" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '30px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '28px' }}>
             {blogsLoading ? (
               <>
                 <Skeleton type="card" />
@@ -497,50 +471,76 @@ export const Home = () => {
               blogs.slice(0, 3).map((blog, idx) => (
                 <motion.div
                   key={blog._id}
-                  className="glass-panel"
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1, duration: 0.6 }}
-                  whileHover={{ y: -8, boxShadow: 'var(--shadow-gold)', borderColor: 'var(--primary-gold)' }}
-                  style={{ 
-                    borderRadius: 'var(--radius-lg)', 
-                    overflow: 'hidden', 
-                    cursor: 'default', 
-                    transition: 'var(--transition-smooth)',
-                    background: 'var(--card-bg)',
-                    border: '1px solid var(--border-light)',
+                  transition={{ delay: idx * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  whileHover={{ y: -10 }}
+                  style={{
+                    borderRadius: '24px',
+                    overflow: 'hidden',
+                    background: '#ffffff',
+                    boxShadow: '0 10px 40px rgba(0,0,0,0.04)',
                     display: 'flex',
                     flexDirection: 'column',
-                    height: '100%'
+                    cursor: 'pointer',
+                    transition: 'transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease',
+                    position: 'relative'
                   }}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.boxShadow = '0 20px 50px rgba(0,0,0,0.12)';
+                    const img = e.currentTarget.querySelector('.blog-img');
+                    if (img) img.style.transform = 'scale(1.08)';
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.boxShadow = '0 10px 40px rgba(0,0,0,0.04)';
+                    const img = e.currentTarget.querySelector('.blog-img');
+                    if (img) img.style.transform = 'scale(1)';
+                  }}
+                  onClick={() => navigate(`/blogs/${blog._id}`)}
                 >
-                  <div style={{ height: '220px', overflow: 'hidden', position: 'relative' }}>
-                    <img 
-                      src={getImageUrl(blog.coverImage)} 
-                      alt={blog.title} 
+                  {/* Image */}
+                  <div style={{ height: '240px', overflow: 'hidden', position: 'relative' }}>
+                    <img
+                      className="blog-img"
+                      src={getImageUrl(blog.coverImage)}
+                      alt={blog.title}
                       onError={handleImageError}
-                      style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s var(--transition-smooth)' }}
-                      onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.06)'}
-                      onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1)' }}
                     />
-                    <div style={{ position: 'absolute', top: '15px', left: '15px', display: 'flex', gap: '5px', flexWrap: 'wrap' }}>
-                      {blog.tags && blog.tags.slice(0, 2).map(tag => (
-                        <span key={tag} style={{ fontSize: '0.7rem', background: 'var(--primary-gradient)', color: 'var(--bg-main)', padding: '4px 10px', borderRadius: '20px', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0) 60%)' }} />
                   </div>
-                  <div style={{ padding: '25px', display: 'flex', flexDirection: 'column', flexGrow: 1, alignItems: 'center', textAlign: 'center' }}>
-                    <div>
-                      <h3 style={{ fontSize: '1.25rem', color: 'var(--dark)', marginBottom: '12px', fontFamily: 'var(--font-serif)', fontWeight: '500', lineHeight: '1.4' }}>
-                        {blog.title}
-                      </h3>
-                      <p style={{ color: 'var(--subtext)', fontSize: '0.88rem', lineHeight: '1.6', marginBottom: '0px' }}>
-                        {blog.excerpt && blog.excerpt.length > 120 ? blog.excerpt.substring(0, 120) + '...' : blog.excerpt}
-                      </p>
-                    </div>
+                  {/* Content */}
+                  <div style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '12px', flexGrow: 1, position: 'relative', overflow: 'hidden' }}>
+                    <h3 style={{ 
+                      fontSize: '1.15rem', 
+                      fontWeight: '700', 
+                      color: '#1a1a1a', 
+                      lineHeight: '1.4', 
+                      margin: 0,
+                      display: '-webkit-box',
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: 'vertical',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      wordBreak: 'break-word'
+                    }}>
+                      {blog.title}
+                    </h3>
+                    <p style={{ 
+                      fontSize: '0.9rem', 
+                      color: 'var(--text-light)', 
+                      lineHeight: '1.6', 
+                      margin: 0,
+                      display: '-webkit-box',
+                      WebkitLineClamp: 3,
+                      WebkitBoxOrient: 'vertical',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      wordBreak: 'break-word'
+                    }}>
+                      {blog.excerpt}
+                    </p>
                   </div>
                 </motion.div>
               ))
@@ -719,49 +719,396 @@ export const Home = () => {
         </div>
       </section>
 
-      {/* 7. NEWSLETTER SECTION */}
-      <section className="newsletter-section section" style={{ paddingBottom: '0' }}>
-        <div className="container" style={{ paddingBottom: '80px' }}>
-          <div className="newsletter-card">
-            <div className="newsletter-content">
-              <h2>Subscribe to our <br />Private Registry</h2>
-              <p>Unlock seasonal private island invitations, bespoke villa upgrades, and members-only luxury rates direct to your inbox.</p>
-            </div>
 
-            <div className="newsletter-action">
-              {newsletterSuccess ? (
-                <motion.div 
-                  className="flex-col gap-10 flex-center text-center"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                >
-                  <FiCheckCircle size={44} style={{ color: 'var(--primary)' }} />
-                  <h3 style={{ fontSize: '1.4rem' }}>Welcome to the Club</h3>
-                  <p style={{ fontSize: '0.85rem', color: 'var(--subtext)' }}>Bespoke seasonal catalogs are headed your way.</p>
-                </motion.div>
-              ) : (
-                <form className="newsletter-input-group" onSubmit={handleNewsletterSubmit}>
-                  <input 
-                    type="email" 
-                    placeholder="Enter your email address" 
+      {/* Subscribe Section */}
+      <section style={styles.subscribeSection}>
+        <div className="container" style={styles.subscribeContainer}>
+          {/* Left: Text + Form */}
+          <div style={styles.subscribeContent}>
+            <span style={styles.subscribeTagline}>Newsletter</span>
+            <h2 style={styles.subscribeTitle}>
+              Subscribe now to get useful<br />traveling information
+            </h2>
+            <p style={styles.subscribeDesc}>
+              Get inspiration, trip ideas, exclusive deals and travel tips delivered straight to your inbox.
+            </p>
+            {newsletterSuccess ? (
+              <motion.div
+                className="flex-col gap-10 flex-center text-center"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+              >
+                <FiCheckCircle size={44} style={{ color: 'var(--primary)' }} />
+                <h3 style={{ fontSize: '1.4rem' }}>You're subscribed!</h3>
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-light)' }}>Travel inspiration is on its way to your inbox.</p>
+              </motion.div>
+            ) : (
+              <form onSubmit={handleNewsletterSubmit} style={{ width: '100%' }}>
+                <div style={styles.subscribeInputPill}>
+                  <input
+                    type="email"
+                    placeholder="Enter your email address"
+                    style={styles.subscribeInput}
                     value={newsletterEmail}
                     onChange={(e) => setNewsletterEmail(e.target.value)}
                     required
                   />
-                  <div className="magnetic-wrap" ref={newsletterBtnRef}>
-                    <button type="submit" className="btn-premium" style={{ padding: '12px 28px', fontSize: '0.85rem' }}>
-                      Subscribe
-                    </button>
-                  </div>
-                </form>
-              )}
-            </div>
+                  <button type="submit" style={styles.subscribeBtn}>Subscribe</button>
+                </div>
+              </form>
+            )}
+          </div>
+          {/* Right: Image */}
+          <div style={styles.subscribeImageWrapper}>
+            <img
+              src="https://images.unsplash.com/photo-1539635278303-d4002c07eae3?q=80&w=2070&auto=format&fit=crop"
+              alt="Traveler"
+              style={styles.subscribeImage}
+            />
           </div>
         </div>
       </section>
-
     </div>
   );
 };
+
+
+const styles = {
+  heroSection: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: '80px 20px',
+    gap: '40px',
+  },
+  heroContent: {
+    flex: 1,
+  },
+  tag: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '10px',
+    backgroundColor: 'white',
+    padding: '8px 20px',
+    borderRadius: '50px',
+    boxShadow: '0 4px 10px rgba(0,0,0,0.05)',
+    marginBottom: '20px',
+  },
+  tagText: {
+    fontFamily: '"Great Vibes", cursive',
+    fontSize: '1.2rem',
+    color: 'var(--primary)',
+    fontWeight: '600',
+  },
+  tagIcon: {
+    backgroundColor: 'var(--primary)',
+    borderRadius: '50%',
+    padding: '2px',
+  },
+  heroTitle: {
+    fontSize: '3.5rem',
+    fontWeight: '700',
+    lineHeight: '1.2',
+    marginBottom: '20px',
+  },
+  heroDesc: {
+    color: 'var(--text-light)',
+    fontSize: '1.1rem',
+    lineHeight: '1.6',
+    maxWidth: '450px',
+  },
+  heroImages: {
+    flex: 1,
+    display: 'flex',
+    gap: '15px',
+    justifyContent: 'flex-end',
+  },
+  heroImg: {
+    width: '180px',
+    height: '350px',
+    objectFit: 'cover',
+    borderRadius: '20px',
+    boxShadow: '0 10px 20px rgba(0,0,0,0.1)',
+  },
+  section: {
+    padding: '60px 20px',
+  },
+  sectionHeader: {
+    marginBottom: '30px',
+  },
+  sectionTag: {
+    fontFamily: '"Great Vibes", cursive',
+    fontSize: '1.8rem',
+    color: 'var(--primary)',
+    display: 'block',
+    marginBottom: '5px',
+  },
+  sectionTitle: {
+    fontSize: '2.5rem',
+    fontWeight: '700',
+  },
+  toursGrid: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '20px',
+  },
+  toursRow: {
+    display: 'grid',
+    gap: '20px',
+  },
+  experienceSection: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '60px',
+  },
+  expContent: {
+    flex: 1,
+  },
+  expDesc: {
+    color: 'var(--text-light)',
+    fontSize: '1.1rem',
+    marginBottom: '30px',
+    marginTop: '20px',
+  },
+  stats: {
+    display: 'flex',
+    gap: '30px',
+  },
+  statItem: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '10px',
+  },
+  statBox: {
+    backgroundColor: 'var(--primary)',
+    color: 'white',
+    width: '80px',
+    height: '80px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '1.5rem',
+    fontWeight: '700',
+    borderRadius: '15px 15px 15px 0',
+  },
+  statLabel: {
+    color: 'var(--text-light)',
+    fontSize: '0.9rem',
+    fontWeight: '600',
+  },
+  expImageWrapper: {
+    flex: 1,
+    position: 'relative',
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  expImage: {
+    maxWidth: '100%',
+    height: 'auto',
+    borderRadius: '20px',
+  },
+  masonryGrid: {
+    columnCount: 4,
+    columnGap: '20px',
+  },
+  masonryItem: {
+    marginBottom: '20px',
+    breakInside: 'avoid',
+  },
+  masonryImg: {
+    width: '100%',
+    borderRadius: '15px',
+    display: 'block',
+  },
+  testimonialsGrid: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(3, 1fr)',
+    gap: '30px',
+  },
+  testimonialCard: {
+    padding: '30px',
+    backgroundColor: 'white',
+    borderRadius: '15px',
+    boxShadow: '0 5px 20px rgba(0,0,0,0.05)',
+  },
+  testimonialText: {
+    color: 'var(--text-light)',
+    fontStyle: 'italic',
+    marginBottom: '20px',
+    lineHeight: '1.6',
+  },
+  testimonialAuthor: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '15px',
+  },
+  authorImg: {
+    width: '50px',
+    height: '50px',
+    borderRadius: '50%',
+  },
+  authorName: {
+    fontWeight: '700',
+    fontSize: '1rem',
+  },
+  authorRole: {
+    color: 'var(--text-light)',
+    fontSize: '0.8rem',
+  },
+  servicesSection: {
+    padding: '60px 20px',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '40px',
+  },
+  servicesHeader: {
+    flex: '1',
+    maxWidth: '300px',
+  },
+  servicesTagline: {
+    color: 'var(--primary)',
+    fontStyle: 'italic',
+    fontWeight: '600',
+    fontSize: '1.2rem',
+    marginBottom: '10px',
+    display: 'block',
+  },
+  servicesTitle: {
+    fontSize: '2.5rem',
+    fontWeight: '700',
+    lineHeight: '1.2',
+  },
+  servicesCards: {
+    flex: '2',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(3, 1fr)',
+    gap: '20px',
+  },
+  serviceCard: {
+    padding: '30px 20px',
+    backgroundColor: 'white',
+    borderRadius: '15px',
+    boxShadow: '4px 4px 0px 0px rgba(0,0,0,0.12), 0 10px 30px rgba(0,0,0,0.06)',
+    border: '1px solid #e8eaf0',
+    borderRight: '2px solid var(--primary)',
+    borderBottom: '2px solid var(--primary)',
+    transition: 'all 0.3s ease',
+    cursor: 'pointer',
+    display: 'flex',
+    flexDirection: 'column',
+    height: '100%',
+    minHeight: '280px',
+  },
+  serviceIconWrapper: {
+    width: '60px',
+    height: '60px',
+    backgroundColor: 'var(--primary)',
+    borderRadius: '12px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: '20px',
+    color: '#ffffff',
+    boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
+  },
+  serviceCardTitle: {
+    fontSize: '1.2rem',
+    fontWeight: '700',
+    marginBottom: '10px',
+  },
+  serviceCardDesc: {
+    color: 'var(--text-light)',
+    fontSize: '0.9rem',
+    lineHeight: '1.5',
+  },
+  subscribeSection: {
+    backgroundColor: 'var(--bg-blue, #e0f2fe)',
+    padding: '70px 0',
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  subscribeContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: '60px',
+  },
+  subscribeContent: {
+    flex: 1,
+    maxWidth: '540px',
+  },
+  subscribeTagline: {
+    display: 'inline-block',
+    color: 'var(--primary)',
+    fontWeight: '600',
+    fontSize: '0.95rem',
+    textTransform: 'uppercase',
+    letterSpacing: '2px',
+    marginBottom: '14px',
+  },
+  subscribeTitle: {
+    fontSize: '2.1rem',
+    fontWeight: '800',
+    lineHeight: '1.25',
+    color: '#000000',
+    marginBottom: '16px',
+  },
+  subscribeDesc: {
+    color: 'var(--text-light)',
+    fontSize: '0.95rem',
+    lineHeight: '1.7',
+    marginBottom: '28px',
+  },
+  subscribeInputPill: {
+    display: 'flex',
+    alignItems: 'center',
+    backgroundColor: '#ffffff',
+    borderRadius: '50px',
+    padding: '6px 6px 6px 22px',
+    boxShadow: '0 4px 20px rgba(0,0,0,0.10)',
+    border: '1.5px solid #e2e8f0',
+    overflow: 'hidden',
+  },
+  subscribeInput: {
+    flex: 1,
+    border: 'none',
+    outline: 'none',
+    fontSize: '0.97rem',
+    color: '#333',
+    backgroundColor: 'transparent',
+    padding: '10px 0',
+    minWidth: 0,
+  },
+  subscribeBtn: {
+    flexShrink: 0,
+    backgroundColor: 'var(--primary)',
+    color: '#ffffff',
+    border: 'none',
+    borderRadius: '50px',
+    padding: '12px 26px',
+    fontSize: '0.95rem',
+    fontWeight: '700',
+    cursor: 'pointer',
+    whiteSpace: 'nowrap',
+    transition: 'opacity 0.2s ease, transform 0.15s ease',
+    letterSpacing: '0.3px',
+  },
+  subscribeImageWrapper: {
+    flex: 1,
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+    position: 'relative',
+    minHeight: '320px',
+  },
+  subscribeImage: {
+    width: '100%',
+    maxWidth: '420px',
+    height: 'auto',
+    objectFit: 'cover',
+    borderRadius: '16px',
+    boxShadow: '0 20px 40px rgba(0,0,0,0.12)',
+  }
+};
+
 
 export default Home;

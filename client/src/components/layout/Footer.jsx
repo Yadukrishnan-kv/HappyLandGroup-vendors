@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import API from '../../api';
 import { FiCompass, FiMail, FiPhone, FiMapPin, FiTwitter, FiFacebook, FiInstagram } from 'react-icons/fi';
 import { useAuth } from '../../context/AuthContext';
 import { getImageUrl } from '../../utils/imageHelper';
@@ -9,30 +8,13 @@ import '../../styles/globals/footer.css';
 export const Footer = () => {
   const location = useLocation();
   const { settings } = useAuth();
-  const [email, setEmail] = useState('');
-  const [status, setStatus] = useState({ loading: false, success: false, error: null });
 
   // Disable Footer completely on all administrative routes (/admin/*)
   if (location.pathname.toLowerCase().startsWith('/admin')) {
     return null;
   }
 
-  const handleSubscribe = async (e) => {
-    e.preventDefault();
-    if (!email) return;
 
-    setStatus({ loading: true, success: false, error: null });
-    try {
-      const res = await API.post('/newsletter/subscribe', { email });
-      if (res.data.success) {
-        setStatus({ loading: false, success: true, error: null });
-        setEmail('');
-      }
-    } catch (err) {
-      const errMsg = err.response?.data?.message || 'Failed to subscribe. Please try again.';
-      setStatus({ loading: false, success: false, error: errMsg });
-    }
-  };
 
   return (
     <footer className="footer-section">
@@ -109,43 +91,6 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* Newsletter subscription */}
-          <div className="footer-column">
-            <h3>Newsletter</h3>
-            <p className="footer-desc" style={{ marginBottom: '16px' }}>
-              Subscribe to unlock seasonal private itineraries and members-only luxury rewards.
-            </p>
-            <form className="footer-newsletter-form" onSubmit={handleSubscribe}>
-              <div className="footer-newsletter-input-wrap">
-                <input
-                  type="email"
-                  className="footer-newsletter-input"
-                  placeholder="Enter your email address"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  disabled={status.loading || status.success}
-                  required
-                />
-              </div>
-              <button
-                type="submit"
-                className="btn-footer-subscribe"
-                disabled={status.loading || status.success}
-              >
-                {status.loading ? 'Subscribing...' : status.success ? 'Subscribed!' : 'Subscribe'}
-              </button>
-            </form>
-            {status.error && (
-              <p style={{ color: '#ff6b6b', fontSize: '0.8rem', marginTop: '8px' }}>
-                {status.error}
-              </p>
-            )}
-            {status.success && (
-              <p style={{ color: 'var(--primary)', fontSize: '0.8rem', marginTop: '8px', fontWeight: '500' }}>
-                Welcome to elite luxury travel updates. Check your inbox!
-              </p>
-            )}
-          </div>
         </div>
 
         {/* Bottom copyright bar */}
