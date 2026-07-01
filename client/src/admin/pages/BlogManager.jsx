@@ -106,29 +106,31 @@ const BlogManager = () => {
       </div>
 
       {loading ? <p>Loading...</p> : (
-        <table className="admin-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
-          <thead>
-            <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)', textAlign: 'left' }}>
-              <th style={{ padding: '15px' }}>Title</th>
-              <th style={{ padding: '15px' }}>Author</th>
-              <th style={{ padding: '15px' }}>Date</th>
-              <th style={{ padding: '15px' }}>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {blogs.map(blog => (
-              <tr key={blog._id} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-                <td style={{ padding: '15px' }}>{blog.title}</td>
-                <td style={{ padding: '15px' }}>{blog.author}</td>
-                <td style={{ padding: '15px' }}>{new Date(blog.publishedAt).toLocaleDateString()}</td>
-                <td style={{ padding: '15px' }}>
-                  <button onClick={() => handleOpenModal(blog)} style={{ background: 'none', border: 'none', color: '#3498db', cursor: 'pointer', marginRight: '10px' }}><FiEdit size={18} /></button>
-                  <button onClick={() => handleDelete(blog._id)} style={{ background: 'none', border: 'none', color: '#ff6b6b', cursor: 'pointer' }}><FiTrash2 size={18} /></button>
-                </td>
+        <div className="admin-flat-table-container">
+          <table className="admin-flat-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Date</th>
+                <th>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {blogs.map(blog => (
+                <tr key={blog._id}>
+                  <td data-label="Title">{blog.title}</td>
+                  <td data-label="Author">{blog.author}</td>
+                  <td data-label="Date">{new Date(blog.publishedAt).toLocaleDateString()}</td>
+                  <td data-label="Actions">
+                    <button onClick={() => handleOpenModal(blog)} style={{ background: 'none', border: 'none', color: '#3498db', cursor: 'pointer', marginRight: '10px' }}><FiEdit size={18} /></button>
+                    <button onClick={() => handleDelete(blog._id)} style={{ background: 'none', border: 'none', color: '#ff6b6b', cursor: 'pointer' }}><FiTrash2 size={18} /></button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
       {modalOpen && createPortal(
         <div className="admin-modal-backdrop" onClick={() => setModalOpen(false)}>

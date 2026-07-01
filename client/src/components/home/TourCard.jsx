@@ -3,10 +3,10 @@ import { MapPin } from 'lucide-react';
 
 const TourCard = ({ image, title, location, height = '300px' }) => {
   return (
-    <div style={{...styles.card, height}}>
+    <div className="tour-card" style={{...styles.card, height}}>
       <img src={image} alt={title} style={styles.image} />
-      <div style={styles.overlay}></div>
-      <div style={styles.content}>
+      <div className="tour-card-overlay" style={styles.overlay}></div>
+      <div className="tour-card-content" style={styles.content}>
         <h3 style={styles.title}>{title}</h3>
         <div style={styles.location}>
           <span>{location}</span>

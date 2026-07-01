@@ -148,23 +148,23 @@ const PremiumServiceManager = () => {
       </div>
 
       {loading ? <p style={{ color: 'var(--text-muted)' }}>Loading premium services inventory...</p> : (
-        <div className="admin-flat-table-container" style={{ background: 'rgba(255, 255, 255, 0.02)', borderRadius: 'var(--radius-md)' }}>
-          <table className="admin-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <div className="admin-flat-table-container">
+          <table className="admin-flat-table">
             <thead>
-              <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)', textAlign: 'left' }}>
-                <th style={{ padding: '15px', color: 'var(--text-muted)' }}>Cover</th>
-                <th style={{ padding: '15px', color: 'var(--text-muted)' }}>Service Name</th>
-                <th style={{ padding: '15px', color: 'var(--text-muted)' }}>Icon</th>
-                <th style={{ padding: '15px', color: 'var(--text-muted)' }}>Title Coordinate</th>
-                <th style={{ padding: '15px', color: 'var(--text-muted)' }}>Order</th>
-                <th style={{ padding: '15px', color: 'var(--text-muted)' }}>Status</th>
-                <th style={{ padding: '15px', color: 'var(--text-muted)', textAlign: 'right' }}>Actions</th>
+              <tr>
+                <th>Cover</th>
+                <th>Service Name</th>
+                <th>Icon</th>
+                <th>Title Coordinate</th>
+                <th>Order</th>
+                <th>Status</th>
+                <th style={{ textAlign: 'right' }}>Actions</th>
               </tr>
             </thead>
             <tbody>
               {services.map(service => (
-                <tr key={service._id} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-                  <td style={{ padding: '15px' }}>
+                <tr key={service._id}>
+                  <td data-label="Cover">
                     <img 
                       src={getImageUrl(service.image)} 
                       alt={service.name} 
@@ -172,21 +172,21 @@ const PremiumServiceManager = () => {
                       onError={handleImageError} 
                     />
                   </td>
-                  <td style={{ padding: '15px', fontWeight: 600, color: 'var(--text-white)' }}>{service.name}</td>
-                  <td style={{ padding: '15px', color: 'var(--primary-gold)' }}>
+                  <td data-label="Service Name" style={{ fontWeight: 600, color: 'var(--text-white)' }}>{service.name}</td>
+                  <td data-label="Icon" style={{ color: 'var(--primary-gold)' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                       {renderIconComponent(service.icon)}
                       <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{service.icon}</span>
                     </div>
                   </td>
-                  <td style={{ padding: '15px', color: 'var(--text-light)', fontSize: '0.9rem' }}>{service.title}</td>
-                  <td style={{ padding: '15px', color: 'var(--text-white)' }}>{service.order}</td>
-                  <td style={{ padding: '15px' }}>
+                  <td data-label="Title Coordinate" style={{ color: 'var(--text-light)', fontSize: '0.9rem' }}>{service.title}</td>
+                  <td data-label="Order" style={{ color: 'var(--text-white)' }}>{service.order}</td>
+                  <td data-label="Status">
                     <span className={`admin-badge ${service.status === 'active' ? 'active' : 'inactive'}`}>
                       {service.status}
                     </span>
                   </td>
-                  <td style={{ padding: '15px', textAlign: 'right' }}>
+                  <td data-label="Actions" style={{ textAlign: 'right' }}>
                     <button onClick={() => handleOpenModal(service)} style={{ background: 'none', border: 'none', color: '#3498db', cursor: 'pointer', marginRight: '15px' }}><FiEdit size={18} /></button>
                     <button onClick={() => handleDelete(service._id)} style={{ background: 'none', border: 'none', color: '#ff6b6b', cursor: 'pointer' }}><FiTrash2 size={18} /></button>
                   </td>

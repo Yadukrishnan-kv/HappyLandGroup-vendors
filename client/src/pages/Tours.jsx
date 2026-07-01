@@ -1,29 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FiSearch } from 'react-icons/fi';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { FiSearch, FiMapPin, FiClock, FiArrowRight } from 'react-icons/fi';
 import API from '../api';
 import Skeleton from '../components/common/Skeleton';
-import Subscribe from '../components/home/Subscribe';
-import TourCard from '../components/home/TourCard';
-import { getImageUrl } from '../utils/imageHelper';
+import Card from '../components/common/Card';
 import '../styles/pages/inner.css';
 
 export const Tours = () => {
   const [tours, setTours] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [searchParams] = useSearchParams();
 
   const [allTourTitles, setAllTourTitles] = useState([]);
 
-  // Filters State
-  const [search, setSearch] = useState('');
-  const [days, setDays] = useState('');
+  const [search, setSearch] = useState(searchParams.get('search') || '');
+  const [days, setDays] = useState(searchParams.get('days') || '');
 
-  // Active filters for API request execution
   const [activeFilters, setActiveFilters] = useState({
-    search: '',
-    days: ''
+    search: searchParams.get('search') || '',
+    days: searchParams.get('days') || '',
+    maxPeople: searchParams.get('maxPeople') || '',
+    distance: searchParams.get('distance') || ''
   });
 
   const fetchTours = async () => {
@@ -33,6 +32,8 @@ export const Tours = () => {
       const params = {};
       if (activeFilters.search) params.search = activeFilters.search;
       if (activeFilters.days) params.days = activeFilters.days;
+      if (activeFilters.maxPeople) params.maxPeople = activeFilters.maxPeople;
+      if (activeFilters.distance) params.distance = activeFilters.distance;
 
       const res = await API.get('/tours', { params });
       if (res.data.success) {
@@ -53,7 +54,7 @@ export const Tours = () => {
       try {
         const res = await API.get('/tours');
         if (res.data.success) {
-          const titles = res.data.data.map(tour => tour.name); // fixed to name instead of title if needed
+          const titles = res.data.data.map(tour => tour.title);
           setAllTourTitles([...new Set(titles)]);
         }
       } catch (err) {
@@ -63,6 +64,23 @@ export const Tours = () => {
     fetchAllTitles();
   }, []);
 
+  // Initialize filters from URL params on mount
+  useEffect(() => {
+    const urlSearch = searchParams.get('search') || '';
+    const urlDays = searchParams.get('days') || '';
+    const urlMaxPeople = searchParams.get('maxPeople') || '';
+    const urlDistance = searchParams.get('distance') || '';
+    
+    setSearch(urlSearch);
+    setDays(urlDays);
+    setActiveFilters({
+      search: urlSearch,
+      days: urlDays,
+      maxPeople: urlMaxPeople,
+      distance: urlDistance
+    });
+  }, []);
+
   useEffect(() => {
     fetchTours();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -70,10 +88,7 @@ export const Tours = () => {
 
   const handleApplyFilters = (e) => {
     e.preventDefault();
-    setActiveFilters({
-      search,
-      days
-    });
+    setActiveFilters({ search, days, maxPeople: activeFilters.maxPeople, distance: activeFilters.distance });
   };
 
   const navigate = useNavigate();
@@ -81,101 +96,70 @@ export const Tours = () => {
   const handleResetFilters = () => {
     setSearch('');
     setDays('');
-    setActiveFilters({
-      search: '',
-      days: ''
-    });
-  };
-
-  // Helper to render masonry grid
-  const renderMasonry = () => {
-    const rows = [];
-    let i = 0;
-    while (i < tours.length) {
-      // Large row (2 items)
-      if (i < tours.length) {
-        const rowItems = tours.slice(i, i + 2);
-        rows.push(
-          <div key={`large-${i}`} style={styles.largeGrid}>
-            {rowItems.map(t => (
-              <div key={t._id} onClick={() => navigate(`/tours/${t._id}`)} style={{cursor: 'pointer'}}>
-                <TourCard 
-                  image={getImageUrl(t.images?.[0])} 
-                  title={t.name} 
-                  location={t.location?.city || t.location?.country} 
-                  height="400px" 
-                />
-              </div>
-            ))}
-          </div>
-        );
-        i += 2;
-      }
-      // Small row (3 items)
-      if (i < tours.length) {
-        const rowItems = tours.slice(i, i + 3);
-        rows.push(
-          <div key={`small-${i}`} style={styles.smallGrid}>
-            {rowItems.map(t => (
-              <div key={t._id} onClick={() => navigate(`/tours/${t._id}`)} style={{cursor: 'pointer'}}>
-                <TourCard 
-                  image={getImageUrl(t.images?.[0])} 
-                  title={t.name} 
-                  location={t.location?.city || t.location?.country} 
-                  height="200px" 
-                />
-              </div>
-            ))}
-          </div>
-        );
-        i += 3;
-      }
-    }
-    return rows;
+    setActiveFilters({ search: '', days: '', maxPeople: '', distance: '' });
   };
 
   return (
     <div className="tours-wrapper" style={{ backgroundColor: 'var(--bg-white)', color: 'var(--text-dark)' }}>
       
-      {/* New Hero Section */}
-      <section style={styles.hero}>
+      <section className="tours-page-hero" style={styles.hero}>
         <div style={styles.heroOverlay}></div>
         <h1 style={styles.heroTitle}>All <span style={{color: 'var(--primary)'}}>Tours</span></h1>
       </section>
 
-      {/* Existing Luxury Filter Panel */}
-      <section className="container" style={{ marginTop: '-40px', position: 'relative', zIndex: 10 }}>
-        <form className="filter-bar" onSubmit={handleApplyFilters} style={{ boxShadow: '0 10px 30px rgba(0,0,0,0.1)' }}>
-          <div className="filter-group">
-            <label>Where to?</label>
-            <select value={search} onChange={(e) => setSearch(e.target.value)}>
-              <option value="">Any Destination</option>
-              {allTourTitles.map((title, idx) => (
-                <option key={idx} value={title}>{title}</option>
-              ))}
-            </select>
+      <section className="container tours-filter-wrapper">
+        <form className="tours-search-bar" onSubmit={handleApplyFilters}>
+          <div className="tours-search-field">
+            <div className="tours-search-icon">
+              <FiMapPin size={18} />
+            </div>
+            <div className="tours-search-input-wrap">
+              <label className="tours-search-label">Destination</label>
+              <select 
+                value={search} 
+                onChange={(e) => setSearch(e.target.value)}
+                className="tours-search-select"
+              >
+                <option value="">Any Destination</option>
+                {allTourTitles.map((title, idx) => (
+                  <option key={idx} value={title}>{title}</option>
+                ))}
+              </select>
+            </div>
           </div>
 
-          <div className="filter-group">
-            <label>Duration</label>
-            <select value={days} onChange={(e) => setDays(e.target.value)}>
-              <option value="">Any Duration</option>
-              <option value="3">1-3 Days</option>
-              <option value="7">4-7 Days</option>
-              <option value="14">8-14 Days</option>
-              <option value="21">15+ Days</option>
-            </select>
+          <div className="tours-search-divider"></div>
+
+          <div className="tours-search-field">
+            <div className="tours-search-icon">
+              <FiClock size={18} />
+            </div>
+            <div className="tours-search-input-wrap">
+              <label className="tours-search-label">Duration</label>
+              <select 
+                value={days} 
+                onChange={(e) => setDays(e.target.value)}
+                className="tours-search-select"
+              >
+                <option value="">Any Duration</option>
+                <option value="3">1-3 Days</option>
+                <option value="7">4-7 Days</option>
+                <option value="14">8-14 Days</option>
+                <option value="21">15+ Days</option>
+              </select>
+            </div>
           </div>
 
-          <button type="submit" className="btn-filter-apply" aria-label="Search">
-            <FiSearch />
+          <button type="submit" className="tours-search-btn" aria-label="Search Tours">
+            <FiSearch size={18} />
+            <span className="tours-search-btn-text">Search Tours</span>
+            <FiArrowRight size={16} className="tours-search-btn-arrow" />
           </button>
         </form>
       </section>
 
-      {/* Main Tours Grid */}
-      <section className="container" style={styles.section}>
-        <h2 style={styles.sectionTitle}>Our Featured <span style={{color: 'var(--primary)'}}>Tours</span></h2>
+      <section className="container tours-main-section" style={styles.section}>
+        <h2 className="tours-section-title" style={styles.sectionTitle}>Our Featured <span style={{color: 'var(--primary)'}}>Tours</span></h2>
         
         {error && (
           <div className="flex-center flex-column tours-error-wrap">
@@ -186,16 +170,8 @@ export const Tours = () => {
         )}
 
         {!error && loading && (
-          <div style={styles.grid}>
-            <div style={styles.largeGrid}>
-               <Skeleton type="card" />
-               <Skeleton type="card" />
-            </div>
-            <div style={styles.smallGrid}>
-               <Skeleton type="card" />
-               <Skeleton type="card" />
-               <Skeleton type="card" />
-            </div>
+          <div className="tours-grid-container">
+            {[1,2,3].map(i => <Skeleton key={i} type="card" />)}
           </div>
         )}
 
@@ -215,19 +191,18 @@ export const Tours = () => {
 
         {!error && !loading && tours.length > 0 && (
           <motion.div 
-            style={styles.grid}
+            className="tours-grid-container"
             initial="hidden"
             animate="show"
             variants={{ show: { transition: { staggerChildren: 0.1 } } }}
           >
-            {renderMasonry()}
+            {tours.map((tour, idx) => (
+              <Card key={tour._id} tour={tour} delay={idx * 0.05} />
+            ))}
           </motion.div>
         )}
       </section>
 
-      {/* Subscribe Section */}
-      <Subscribe />
-      
     </div>
   );
 };
@@ -267,21 +242,6 @@ const styles = {
     textAlign: 'center',
     marginBottom: '40px',
   },
-  grid: {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '20px',
-  },
-  largeGrid: {
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gap: '20px',
-  },
-  smallGrid: {
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr 1fr',
-    gap: '20px',
-  }
 };
 
 export default Tours;

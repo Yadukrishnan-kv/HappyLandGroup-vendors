@@ -72,16 +72,16 @@ const About = () => {
 
 
       {/* Services Section */}
-      <div style={{ backgroundColor: '#f9fafb', padding: '40px 0' }}>
+      <div className="about-services-wrapper" style={{ backgroundColor: '#f9fafb', padding: '40px 0' }}>
         <Services />
       </div>
 
       {/* Subscribe Section */}
-      <section style={styles.subscribeSection}>
-        <div className="container" style={styles.subscribeContainer}>
+      <section className="about-subscribe-section" style={styles.subscribeSection}>
+        <div className="container about-subscribe-container" style={styles.subscribeContainer}>
 
           {/* Left: Text + Form */}
-          <div style={styles.subscribeContent}>
+          <div className="about-subscribe-content" style={styles.subscribeContent}>
             <span style={styles.subscribeTagline}>Newsletter</span>
             <h2 style={styles.subscribeTitle}>
               Subscribe now to get useful<br />traveling information
@@ -101,8 +101,8 @@ const About = () => {
                 <p style={{ fontSize: '0.9rem', color: 'var(--text-light)' }}>Travel inspiration is on its way to your inbox.</p>
               </motion.div>
             ) : (
-              <form onSubmit={handleNewsletterSubmit} style={styles.subscribeForm}>
-                <div style={styles.subscribeInputPill}>
+              <form onSubmit={handleNewsletterSubmit} className="about-subscribe-form" style={styles.subscribeForm}>
+                <div className="about-subscribe-pill" style={styles.subscribeInputPill}>
                   <input
                     type="email"
                     placeholder="Enter your email address"
@@ -118,7 +118,7 @@ const About = () => {
           </div>
 
           {/* Right: Image */}
-          <div style={styles.subscribeImageWrapper}>
+          <div className="about-subscribe-image-wrapper" style={styles.subscribeImageWrapper}>
             <img
               src="https://images.unsplash.com/photo-1539635278303-d4002c07eae3?q=80&w=2070&auto=format&fit=crop"
               alt="Traveler"

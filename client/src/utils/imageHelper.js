@@ -6,15 +6,17 @@ export const getImageUrl = (imagePath) => {
     return imagePath;
   }
   // If it's a relative path from the backend uploads folder
-  const backendUrl = process.env.REACT_APP_API_URL ? process.env.REACT_APP_API_URL.replace('/api', '') : 'http://localhost:5002';
+  const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5002/api';
+  const backendBase = apiUrl.replace(/\/api\/?$/, '');
   
   if (imagePath.startsWith('/uploads/') || imagePath.startsWith('uploads/')) {
     const cleanPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;
-    return `${backendUrl}${cleanPath}`;
+    // Use /api/uploads so reverse proxy routes it to Express
+    return `${backendBase}/api${cleanPath}`;
   }
   
   const cleanPath = imagePath.startsWith('/') ? imagePath : `/${imagePath}`;
-  return `${backendUrl}${cleanPath}`;
+  return `${backendBase}/api${cleanPath}`;
 };
 
 export const handleImageError = (e) => {

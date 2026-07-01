@@ -36,6 +36,21 @@ export const Navbar = () => {
     setMobileOpen(false);
   }, [location]);
 
+  // Lock body scroll when mobile drawer is open
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.height = '100%';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.height = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.height = '';
+    };
+  }, [mobileOpen]);
+
   const handleLogout = () => {
     logout();
     navigate('/');
@@ -131,7 +146,13 @@ export const Navbar = () => {
         </div>
       </header>
 
-      {/* Mobile Drawer Overlay */}
+      {/* Mobile Drawer Overlay - Backdrop */}
+      <div
+        className={`mobile-drawer-overlay ${mobileOpen ? 'visible' : ''}`}
+        onClick={() => setMobileOpen(false)}
+      />
+
+      {/* Mobile Drawer Panel */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div

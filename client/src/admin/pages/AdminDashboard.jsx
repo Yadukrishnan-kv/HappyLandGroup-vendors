@@ -4,11 +4,17 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   FiCalendar, FiCompass, 
   FiEdit, FiLogOut, FiCheckCircle, FiAlertCircle, FiSettings, FiImage,
-  FiUsers, FiDollarSign, FiPlus, FiTrash2, FiBriefcase, FiGlobe, FiShield, FiMenu
+  FiUsers, FiDollarSign, FiPlus, FiTrash2, FiBriefcase, FiGlobe, FiShield, FiMenu, FiType,
+  FiFileText, FiStar, FiHeart, FiPackage, FiPhone
 } from 'react-icons/fi';
 import { useAuth } from '../../context/AuthContext';
 import API from '../../api';
 import Skeleton from '../../components/common/Skeleton';
+import BlogManager from './BlogManager';
+import TrustLogoManager from './TrustLogoManager';
+import WhyTravelManager from './WhyTravelManager';
+import PremiumServiceManager from './PremiumServiceManager';
+import ContactManager from './ContactManager';
 import ResourceManagers from './ResourceManagers';
 import { getImageUrl, handleImageError } from '../../utils/imageHelper';
 import '../../styles/pages/inner.css';
@@ -378,11 +384,46 @@ export const AdminDashboard = () => {
             <span>Manage Users</span>
           </li>
           <li 
-            className={`admin-menu-item ${activeTab === 'admin-cms' ? 'active' : ''}`}
-            onClick={() => { setActiveTab('admin-cms'); setMobileMenuOpen(false); }}
+            className={`admin-menu-item ${activeTab === 'admin-blogs' ? 'active' : ''}`}
+            onClick={() => { setActiveTab('admin-blogs'); setMobileMenuOpen(false); }}
           >
-            <FiGlobe />
-            <span>Manage CMS</span>
+            <FiFileText />
+            <span>Journals (Blogs)</span>
+          </li>
+          <li 
+            className={`admin-menu-item ${activeTab === 'admin-trust-logos' ? 'active' : ''}`}
+            onClick={() => { setActiveTab('admin-trust-logos'); setMobileMenuOpen(false); }}
+          >
+            <FiStar />
+            <span>Partners (Trust Logos)</span>
+          </li>
+          <li 
+            className={`admin-menu-item ${activeTab === 'admin-why-travel' ? 'active' : ''}`}
+            onClick={() => { setActiveTab('admin-why-travel'); setMobileMenuOpen(false); }}
+          >
+            <FiHeart />
+            <span>Why Travel Features</span>
+          </li>
+          <li 
+            className={`admin-menu-item ${activeTab === 'admin-premium-services' ? 'active' : ''}`}
+            onClick={() => { setActiveTab('admin-premium-services'); setMobileMenuOpen(false); }}
+          >
+            <FiPackage />
+            <span>Premium Services</span>
+          </li>
+          <li 
+            className={`admin-menu-item ${activeTab === 'admin-contact' ? 'active' : ''}`}
+            onClick={() => { setActiveTab('admin-contact'); setMobileMenuOpen(false); }}
+          >
+            <FiPhone />
+            <span>Contact Us Manager</span>
+          </li>
+          <li 
+            className={`admin-menu-item ${activeTab === 'admin-branding' ? 'active' : ''}`}
+            onClick={() => { setActiveTab('admin-branding'); setMobileMenuOpen(false); }}
+          >
+            <FiType />
+            <span>Branding Settings</span>
           </li>
           <li 
             className={`admin-menu-item ${activeTab === 'profile' ? 'active' : ''}`}
@@ -407,7 +448,7 @@ export const AdminDashboard = () => {
       {/* Main Content Area */}
       <main className="admin-main-content">
         {/* Top Operational Header */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #e2e8f0', paddingBottom: '20px', marginBottom: '30px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #e2e8f0', paddingBottom: '15px', marginBottom: '20px' }}>
           <div>
             <h1 style={{ fontSize: '1.75rem', fontWeight: '700', color: '#0f172a', letterSpacing: '-0.02em', margin: 0 }}>
               Administrative Console
@@ -532,7 +573,7 @@ export const AdminDashboard = () => {
                           <tbody>
                             {allBookings.map((b) => (
                               <tr key={b._id}>
-                                <td>
+                                <td data-label="Traveler">
                                   <div style={{ fontWeight: 600, color: '#0f172a' }}>
                                     {b.user?.firstName} {b.user?.lastName}
                                   </div>
@@ -540,18 +581,18 @@ export const AdminDashboard = () => {
                                     {b.user?.email}
                                   </div>
                                 </td>
-                                <td>{b.tour?.title || 'Unknown Tour'}</td>
-                                <td>{new Date(b.bookingDate).toLocaleDateString()}</td>
-                                <td>{b.guests}</td>
-                                <td style={{ fontWeight: 600, color: '#0f172a' }}>${b.totalPrice?.toLocaleString()}</td>
-                                <td>
+                                <td data-label="Selected Voyage">{b.tour?.title || 'Unknown Tour'}</td>
+                                <td data-label="Date">{new Date(b.bookingDate).toLocaleDateString()}</td>
+                                <td data-label="Guests">{b.guests}</td>
+                                <td data-label="Amount" style={{ fontWeight: 600, color: '#0f172a' }}>${b.totalPrice?.toLocaleString()}</td>
+                                <td data-label="Status">
                                   <span className={`admin-flat-badge ${
                                     b.status === 'confirmed' || b.status === 'completed' ? 'success' : 'danger'
                                   }`}>
                                     {b.status}
                                   </span>
                                 </td>
-                                <td>
+                                <td data-label="Operations">
                                   <div className="admin-btn-group">
                                     {b.status !== 'confirmed' && b.status !== 'completed' && (
                                       <button 
@@ -625,7 +666,7 @@ export const AdminDashboard = () => {
                           <tbody>
                             {allTours.map((t) => (
                               <tr key={t._id}>
-                                <td>
+                                <td data-label="Package Detail">
                                   <div style={{ fontWeight: 600, color: '#0f172a', display: 'flex', alignItems: 'center', gap: '10px' }}>
                                     <img 
                                       src={getImageUrl(t.images && t.images.length > 0 ? t.images[0] : null)} 
@@ -636,16 +677,16 @@ export const AdminDashboard = () => {
                                     <span>{t.title}</span>
                                   </div>
                                 </td>
-                                <td>{t.city}, {t.country}</td>
-                                <td>{t.maxPeople} guests max</td>
-                                <td>{t.distance} km</td>
-                                <td style={{ fontWeight: 600, color: '#0f172a' }}>${t.price}</td>
-                                <td>
+                                <td data-label="Location">{t.city}, {t.country}</td>
+                                <td data-label="Capacity">{t.maxPeople} guests max</td>
+                                <td data-label="Distance">{t.distance} km</td>
+                                <td data-label="Price" style={{ fontWeight: 600, color: '#0f172a' }}>${t.price}</td>
+                                <td data-label="Featured">
                                   <span className={`admin-flat-badge ${t.featured ? 'warning' : 'neutral'}`}>
                                     {t.featured ? 'Featured' : 'Standard'}
                                   </span>
                                 </td>
-                                <td>
+                                <td data-label="Actions">
                                   <div className="admin-btn-group">
                                     <button 
                                       className="admin-action-btn" 
@@ -701,7 +742,7 @@ export const AdminDashboard = () => {
                           <tbody>
                             {allUsers.map((u) => (
                               <tr key={u._id}>
-                                <td>
+                                <td data-label="Identity Credentials">
                                   <div className="user-avatar-cell" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                                     <img src={u.avatar || PREDEFINED_AVATARS[0]} alt={u.firstName} style={{ width: '32px', height: '32px', borderRadius: '50%', objectFit: 'cover', border: '1px solid #cbd5e1' }} />
                                     <div>
@@ -714,14 +755,14 @@ export const AdminDashboard = () => {
                                     </div>
                                   </div>
                                 </td>
-                                <td>{u.phone || 'No phone registered'}</td>
-                                <td>{new Date(u.createdAt || Date.now()).toLocaleDateString()}</td>
-                                <td>
+                                <td data-label="Contact Coordinates">{u.phone || 'No phone registered'}</td>
+                                <td data-label="Join Date">{new Date(u.createdAt || Date.now()).toLocaleDateString()}</td>
+                                <td data-label="Clearance">
                                   <span className={`admin-flat-badge ${u.role === 'admin' ? 'info' : 'neutral'}`}>
                                     {u.role}
                                   </span>
                                 </td>
-                                <td>
+                                <td data-label="Role Operations">
                                   {u._id !== user._id ? (
                                     <div className="admin-btn-group">
                                       <button 
@@ -754,14 +795,49 @@ export const AdminDashboard = () => {
                   </div>
                 )}
 
-                {/* 5. ADMIN CMS & SETTINGS TAB */}
-                {activeTab === 'admin-cms' && (
+                {/* 5. ADMIN JOURNALS (BLOGS) TAB */}
+                {activeTab === 'admin-blogs' && (
+                  <div>
+                    <BlogManager />
+                  </div>
+                )}
+
+                {/* 5.1. ADMIN PARTNERS (TRUST LOGOS) TAB */}
+                {activeTab === 'admin-trust-logos' && (
+                  <div>
+                    <TrustLogoManager />
+                  </div>
+                )}
+
+                {/* 5.2. ADMIN WHY TRAVEL FEATURES TAB */}
+                {activeTab === 'admin-why-travel' && (
+                  <div>
+                    <WhyTravelManager />
+                  </div>
+                )}
+
+                {/* 5.3. ADMIN PREMIUM SERVICES TAB */}
+                {activeTab === 'admin-premium-services' && (
+                  <div>
+                    <PremiumServiceManager />
+                  </div>
+                )}
+
+                {/* 5.4. ADMIN CONTACT US TAB */}
+                {activeTab === 'admin-contact' && (
+                  <div>
+                    <ContactManager />
+                  </div>
+                )}
+
+                {/* 5.5. ADMIN BRANDING SETTINGS TAB */}
+                {activeTab === 'admin-branding' && (
                   <div>
                     <div className="admin-header-row" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                      <h2>Content Management</h2>
-                      <span className="admin-flat-badge neutral">Branding & Resources</span>
+                      <h2>Branding Settings</h2>
+                      <span className="admin-flat-badge neutral">Logo & Brand Identity</span>
                     </div>
-                    <ResourceManagers isEmbedded={true} />
+                    <ResourceManagers isEmbedded={true} showBrandingOnly={true} />
                   </div>
                 )}
 

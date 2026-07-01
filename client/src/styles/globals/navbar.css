@@ -230,12 +230,35 @@
   transform: translateY(-8px) rotate(-45deg);
 }
 
-/* Mobile Drawer Overlay */
+/* Mobile Drawer Overlay - Backdrop */
+.mobile-drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  cursor: pointer;
+}
+
+.mobile-drawer-overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Mobile Drawer Panel */
 .mobile-drawer {
   position: fixed;
   top: 0;
   right: 0;
   width: 100%;
+  max-width: 420px;
   height: 100vh;
   background: var(--bg);
   z-index: 999;
@@ -244,6 +267,7 @@
   padding: 120px 40px 60px;
   transform: translateX(100%);
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
 }
 
 .mobile-drawer.open {
@@ -313,7 +337,57 @@
 }
 
 @media (max-width: 480px) {
+  .navbar-header {
+    height: 70px;
+  }
+  .navbar-header.scrolled {
+    height: 62px;
+  }
   .navbar-container {
     padding: 0 16px !important;
+  }
+  .navbar-logo {
+    font-size: 1.3rem;
+  }
+  .navbar-logo img {
+    width: 44px !important;
+    height: 44px !important;
+  }
+}
+
+/* Mobile Drawer - responsive padding */
+@media (max-width: 768px) {
+  .mobile-drawer {
+    max-width: 100%;
+    padding: 100px 30px 50px;
+  }
+  .mobile-drawer-link {
+    font-size: 1.8rem;
+  }
+  .mobile-drawer-links {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobile-drawer {
+    padding: 85px 20px 40px;
+  }
+  .mobile-drawer-link {
+    font-size: 1.4rem;
+  }
+  .mobile-drawer-links {
+    gap: 18px;
+    margin-bottom: 40px;
+  }
+  .mobile-drawer-actions {
+    gap: 14px;
+  }
+}
+
+/* Fix horizontal scrolling on mobile */
+@media (max-width: 1120px) {
+  body {
+    overflow-x: hidden;
   }
 }

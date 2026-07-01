@@ -323,31 +323,31 @@ const ContactManager = () => {
               <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text-muted)' }}>Customer support inbox is empty. Newly transmitted messages will populate here.</p>
             </div>
           ) : (
-            <div className="admin-flat-table-container" style={{ overflowX: 'auto' }}>
-              <table className="admin-table" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+            <div className="admin-flat-table-container">
+              <table className="admin-flat-table">
                 <thead>
-                  <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
-                    <th style={{ padding: '15px' }}>Sender Coordinates</th>
-                    <th style={{ padding: '15px' }}>Subject Context</th>
-                    <th style={{ padding: '15px' }}>Transmission Date</th>
-                    <th style={{ padding: '15px' }}>Inbox State</th>
-                    <th style={{ padding: '15px' }}>Operations</th>
+                  <tr>
+                    <th>Sender Coordinates</th>
+                    <th>Subject Context</th>
+                    <th>Transmission Date</th>
+                    <th>Inbox State</th>
+                    <th>Operations</th>
                   </tr>
                 </thead>
                 <tbody>
                   {messages.map(msg => (
-                    <tr key={msg._id} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)', background: msg.status === 'unread' ? 'rgba(212, 175, 55, 0.02)' : 'transparent', transition: 'background 0.2s' }}>
-                      <td style={{ padding: '15px' }}>
+                    <tr key={msg._id} style={{ background: msg.status === 'unread' ? 'rgba(212, 175, 55, 0.02)' : 'transparent', transition: 'background 0.2s' }}>
+                      <td data-label="Sender Coordinates">
                         <div style={{ fontWeight: '600', color: 'var(--text-white)' }}>{msg.name}</div>
                         <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{msg.email}</div>
                       </td>
-                      <td style={{ padding: '15px', color: 'var(--text-light)', maxWidth: '250px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      <td data-label="Subject Context" style={{ maxWidth: '250px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                         {msg.subject || 'General Inquiry'}
                       </td>
-                      <td style={{ padding: '15px', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+                      <td data-label="Transmission Date" style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
                         {new Date(msg.createdAt).toLocaleDateString()} at {new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                       </td>
-                      <td style={{ padding: '15px' }}>
+                      <td data-label="Inbox State">
                         <span className={`admin-badge ${msg.status}`} style={{
                           textTransform: 'uppercase', 
                           fontSize: '0.7rem', 
@@ -361,7 +361,7 @@ const ContactManager = () => {
                           {msg.status}
                         </span>
                       </td>
-                      <td style={{ padding: '15px' }}>
+                      <td data-label="Operations">
                         <div style={{ display: 'flex', gap: '10px' }}>
                           <button 
                             className="btn-premium"

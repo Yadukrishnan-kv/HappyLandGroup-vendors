@@ -219,7 +219,7 @@ export const Home = () => {
       <SearchBox />
 
       {/* Services Section */}
-      <section className="container" style={styles.servicesSection}>
+      <section className="container services-section-wrapper" style={styles.servicesSection}>
         <div style={styles.servicesHeader}>
           <span style={styles.servicesTagline}>What we serve</span>
           <h2 style={styles.servicesTitle}>We offer our best services</h2>
@@ -239,12 +239,14 @@ export const Home = () => {
               pagination={{ clickable: true }}
               autoplay={{ delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true }}
               loop={true}
+              grabCursor={true}
               breakpoints={{
-                640: { slidesPerView: 1 },
-                768: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 },
+                640: { slidesPerView: 1, spaceBetween: 16 },
+                768: { slidesPerView: 2, spaceBetween: 20 },
+                1024: { slidesPerView: 3, spaceBetween: 24 },
               }}
-              style={{ paddingBottom: '40px' }} // Space for pagination
+              className="services-swiper"
+              style={{ paddingBottom: '40px' }}
             >
               {services.map(service => (
                 <SwiperSlide key={service._id}>
@@ -266,11 +268,13 @@ export const Home = () => {
               pagination={{ clickable: true }}
               autoplay={{ delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true }}
               loop={true}
+              grabCursor={true}
               breakpoints={{
-                640: { slidesPerView: 1 },
-                768: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 },
+                640: { slidesPerView: 1, spaceBetween: 16 },
+                768: { slidesPerView: 2, spaceBetween: 20 },
+                1024: { slidesPerView: 3, spaceBetween: 24 },
               }}
+              className="services-swiper"
               style={{ paddingBottom: '40px' }}
             >
               {[
@@ -329,27 +333,13 @@ export const Home = () => {
 
 
       {/* Experience Section */}
-      <section className="container experience-section-container" style={{...styles.section, ...styles.experienceSection}}>
+      <section className="container experience-section-container" style={styles.section}>
         <div className="experience-content" style={styles.expContent}>
           <span style={styles.sectionTag}>Experience</span>
           <h2 style={styles.sectionTitle}>With our all experience we will serve you</h2>
           <p style={styles.expDesc}>
             Whether managing complex corporate visa services, multi-city group operations, or curating high-end bespoke holiday itineraries, our expert Ajman-based operations ensure seamless reliability.
           </p>
-          <div className="experience-stats" style={styles.stats}>
-            <div style={styles.statItem}>
-              <div style={styles.statBox}>18k+</div>
-              <div style={styles.statLabel}>Clients Serviced</div>
-            </div>
-            <div style={styles.statItem}>
-              <div style={styles.statBox}>20+</div>
-              <div style={styles.statLabel}>Expert Coordinators</div>
-            </div>
-            <div style={styles.statItem}>
-              <div style={styles.statBox}>15+</div>
-              <div style={styles.statLabel}>Years of Experience</div>
-            </div>
-          </div>
         </div>
         <div className="experience-image-wrapper" style={styles.expImageWrapper}>
           <div className="experience-img-collage" style={{ width: '100%', maxWidth: '600px' }}>
@@ -365,10 +355,24 @@ export const Home = () => {
             />
           </div>
         </div>
+        <div className="experience-stats" style={styles.stats}>
+          <div className="stat-item" style={styles.statItem}>
+            <div className="stat-box" style={styles.statBox}>18k+</div>
+            <div className="stat-label" style={styles.statLabel}>Clients Serviced</div>
+          </div>
+          <div className="stat-item" style={styles.statItem}>
+            <div className="stat-box" style={styles.statBox}>20+</div>
+            <div className="stat-label" style={styles.statLabel}>Expert Coordinators</div>
+          </div>
+          <div className="stat-item" style={styles.statItem}>
+            <div className="stat-box" style={styles.statBox}>15+</div>
+            <div className="stat-label" style={styles.statLabel}>Years of Experience</div>
+          </div>
+        </div>
       </section>
 
       {/* Gallery Section */}
-      <section className="container" style={styles.section}>
+      <section className="container gallery-section" style={styles.section}>
         <div style={styles.sectionHeader}>
           <span style={styles.sectionTag}>Gallery</span>
           <h2 style={styles.sectionTitle}>Visit our customers tour gallery</h2>
@@ -744,16 +748,17 @@ export const Home = () => {
               </motion.div>
             ) : (
               <form onSubmit={handleNewsletterSubmit} style={{ width: '100%' }}>
-                <div style={styles.subscribeInputPill}>
+                <div className="subscribe-input-pill" style={styles.subscribeInputPill}>
                   <input
                     type="email"
                     placeholder="Enter your email address"
+                    className="subscribe-input"
                     style={styles.subscribeInput}
                     value={newsletterEmail}
                     onChange={(e) => setNewsletterEmail(e.target.value)}
                     required
                   />
-                  <button type="submit" style={styles.subscribeBtn}>Subscribe</button>
+                  <button type="submit" className="subscribe-btn" style={styles.subscribeBtn}>Subscribe</button>
                 </div>
               </form>
             )}
@@ -987,10 +992,6 @@ const styles = {
     padding: '30px 20px',
     backgroundColor: 'white',
     borderRadius: '15px',
-    boxShadow: '4px 4px 0px 0px rgba(0,0,0,0.12), 0 10px 30px rgba(0,0,0,0.06)',
-    border: '1px solid #e8eaf0',
-    borderRight: '2px solid var(--primary)',
-    borderBottom: '2px solid var(--primary)',
     transition: 'all 0.3s ease',
     cursor: 'pointer',
     display: 'flex',

@@ -1,16 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { MapPin, Route, Users, Search } from 'lucide-react';
 
 const SearchBox = () => {
+  const navigate = useNavigate();
+  const [location, setLocation] = useState('');
+  const [distance, setDistance] = useState('');
+  const [maxPeople, setMaxPeople] = useState('');
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const params = new URLSearchParams();
+    if (location.trim()) params.append('search', location.trim());
+    if (distance) params.append('distance', distance);
+    if (maxPeople) params.append('maxPeople', maxPeople);
+    navigate(`/tours?${params.toString()}`);
+  };
+
   return (
-    <div className="home-search-box" style={styles.searchBox}>
+    <form className="home-search-box" style={styles.searchBox} onSubmit={handleSearch}>
       <div style={styles.inputGroup}>
         <div style={styles.iconWrapper}>
           <MapPin size={24} color="var(--primary)" />
         </div>
         <div style={styles.inputWrapper}>
           <label style={styles.label}>Location</label>
-          <input type="text" placeholder="Where are you going?" style={styles.input} />
+          <input 
+            type="text" 
+            placeholder="Where are you going?" 
+            style={styles.input} 
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+          />
         </div>
       </div>
       
@@ -22,7 +43,13 @@ const SearchBox = () => {
         </div>
         <div style={styles.inputWrapper}>
           <label style={styles.label}>Distance</label>
-          <input type="text" placeholder="Distance k/m" style={styles.input} />
+          <input 
+            type="number" 
+            placeholder="Distance k/m" 
+            style={styles.input} 
+            value={distance}
+            onChange={(e) => setDistance(e.target.value)}
+          />
         </div>
       </div>
 
@@ -34,14 +61,20 @@ const SearchBox = () => {
         </div>
         <div style={styles.inputWrapper}>
           <label style={styles.label}>Max People</label>
-          <input type="number" placeholder="0" style={styles.input} />
+          <input 
+            type="number" 
+            placeholder="0" 
+            style={styles.input} 
+            value={maxPeople}
+            onChange={(e) => setMaxPeople(e.target.value)}
+          />
         </div>
       </div>
 
-      <button style={styles.searchBtn}>
+      <button type="submit" style={styles.searchBtn}>
         <Search size={24} color="white" />
       </button>
-    </div>
+    </form>
   );
 };
 

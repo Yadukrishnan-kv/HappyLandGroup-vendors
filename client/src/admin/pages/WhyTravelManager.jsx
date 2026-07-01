@@ -103,39 +103,41 @@ const WhyTravelManager = () => {
       </div>
 
       {loading ? <p>Loading...</p> : (
-        <table className="admin-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
-          <thead>
-            <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)', textAlign: 'left' }}>
-              <th style={{ padding: '15px' }}>Icon</th>
-              <th style={{ padding: '15px' }}>Title</th>
-              <th style={{ padding: '15px' }}>Order</th>
-              <th style={{ padding: '15px' }}>Status</th>
-              <th style={{ padding: '15px' }}>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {features.map(feature => (
-              <tr key={feature._id} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-                <td style={{ padding: '15px' }}>
-                  {feature.icon ? (
-                    <img src={getImageUrl(feature.icon)} alt={feature.title} style={{ height: '40px', width: '40px', objectFit: 'contain' }} onError={handleImageError} />
-                  ) : (
-                    <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>No Icon</span>
-                  )}
-                </td>
-                <td style={{ padding: '15px' }}>{feature.title}</td>
-                <td style={{ padding: '15px' }}>{feature.order}</td>
-                <td style={{ padding: '15px' }}>
-                  <span className={`admin-badge ${feature.status === 'active' ? 'active' : 'inactive'}`}>{feature.status}</span>
-                </td>
-                <td style={{ padding: '15px' }}>
-                  <button onClick={() => handleOpenModal(feature)} style={{ background: 'none', border: 'none', color: '#3498db', cursor: 'pointer', marginRight: '10px' }}><FiEdit size={18} /></button>
-                  <button onClick={() => handleDelete(feature._id)} style={{ background: 'none', border: 'none', color: '#ff6b6b', cursor: 'pointer' }}><FiTrash2 size={18} /></button>
-                </td>
+        <div className="admin-flat-table-container">
+          <table className="admin-flat-table">
+            <thead>
+              <tr>
+                <th>Icon</th>
+                <th>Title</th>
+                <th>Order</th>
+                <th>Status</th>
+                <th>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {features.map(feature => (
+                <tr key={feature._id}>
+                  <td data-label="Icon">
+                    {feature.icon ? (
+                      <img src={getImageUrl(feature.icon)} alt={feature.title} style={{ height: '40px', width: '40px', objectFit: 'contain' }} onError={handleImageError} />
+                    ) : (
+                      <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>No Icon</span>
+                    )}
+                  </td>
+                  <td data-label="Title">{feature.title}</td>
+                  <td data-label="Order">{feature.order}</td>
+                  <td data-label="Status">
+                    <span className={`admin-badge ${feature.status === 'active' ? 'active' : 'inactive'}`}>{feature.status}</span>
+                  </td>
+                  <td data-label="Actions">
+                    <button onClick={() => handleOpenModal(feature)} style={{ background: 'none', border: 'none', color: '#3498db', cursor: 'pointer', marginRight: '10px' }}><FiEdit size={18} /></button>
+                    <button onClick={() => handleDelete(feature._id)} style={{ background: 'none', border: 'none', color: '#ff6b6b', cursor: 'pointer' }}><FiTrash2 size={18} /></button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
 
       {modalOpen && createPortal(

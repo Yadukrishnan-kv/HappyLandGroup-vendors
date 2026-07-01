@@ -57,10 +57,10 @@ const Login = () => {
       </div>
       
       <div className="auth-form-col" style={styles.formCol}>
-        <div style={styles.formContainer}>
+        <div className="auth-form-container" style={styles.formContainer}>
           <div style={styles.header}>
-            <h1 style={styles.title}>Welcome</h1>
-            <p style={styles.subtitle}>Login with Email</p>
+            <h1 className="auth-title" style={styles.title}>Welcome</h1>
+            <p className="auth-subtitle" style={styles.subtitle}>Login with Email</p>
           </div>
 
           <form style={styles.form} onSubmit={handleSubmit}>
@@ -118,29 +118,6 @@ const Login = () => {
 
           <div style={styles.registerPrompt}>
             Don't have account? <Link to="/register" style={styles.registerLink} state={location.state}>Register Now</Link>
-          </div>
-
-          {/* Premium Bespoke Sandbox Access Gate */}
-          <div style={{ marginTop: '20px', padding: '15px', backgroundColor: '#f9fafb', borderRadius: '10px' }}>
-            <span style={{ fontSize: '0.8rem', fontWeight: 'bold', color: 'var(--primary)', display: 'block', textAlign: 'center', marginBottom: '10px' }}>
-              Sandbox Quick Access Gate
-            </span>
-            <div style={{ display: 'flex', gap: '10px' }}>
-              <button
-                type="button"
-                onClick={() => { setEmail('guest@happygroupventures.com'); setPassword('password123'); }}
-                style={{ flex: 1, padding: '8px', fontSize: '0.8rem', backgroundColor: 'white', border: '1px solid #e5e7eb', borderRadius: '5px', cursor: 'pointer' }}
-              >
-                Auto-fill Guest
-              </button>
-              <button
-                type="button"
-                onClick={() => { navigate('/admin/login'); }}
-                style={{ flex: 1, padding: '8px', fontSize: '0.8rem', backgroundColor: 'white', border: '1px solid #e5e7eb', borderRadius: '5px', cursor: 'pointer' }}
-              >
-                Go to Staff Portal
-              </button>
-            </div>
           </div>
 
         </div>

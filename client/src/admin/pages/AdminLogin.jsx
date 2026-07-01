@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FiLock, FiUser, FiArrowLeft, FiAlertTriangle } from 'react-icons/fi';
+import { FiLock, FiUser, FiArrowLeft, FiAlertTriangle, FiShield } from 'react-icons/fi';
 import { useAuth } from '../../context/AuthContext';
 import '../../styles/pages/inner.css';
 
@@ -62,7 +62,7 @@ export const AdminLogin = () => {
   return (
     <div style={{ 
       minHeight: '100vh', 
-      background: 'var(--bg-brand-blue)', 
+      background: '#f8fafc', 
       display: 'flex', 
       justifyContent: 'center', 
       alignItems: 'center', 
@@ -71,65 +71,40 @@ export const AdminLogin = () => {
       overflow: 'hidden'
     }}>
       
-      {/* Floating Blurred Gold Ambient Spheres */}
+      {/* Subtle Background Pattern */}
       <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none', zIndex: 0 }}>
-        <motion.div
-          animate={{
-            x: [0, 50, -30, 0],
-            y: [0, -60, 40, 0],
-          }}
-          transition={{
-            duration: 22,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          style={{
-            position: 'absolute',
-            top: '10%',
-            right: '15%',
-            width: '260px',
-            height: '260px',
-            background: 'radial-gradient(circle, rgba(212, 175, 55, 0.12) 0%, rgba(212, 175, 55, 0) 70%)',
-            filter: 'blur(65px)',
-            borderRadius: '50%'
-          }}
-        />
-        <motion.div
-          animate={{
-            x: [0, -40, 50, 0],
-            y: [0, 50, -50, 0],
-          }}
-          transition={{
-            duration: 28,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          style={{
-            position: 'absolute',
-            bottom: '10%',
-            left: '15%',
-            width: '300px',
-            height: '300px',
-            background: 'radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, rgba(212, 175, 55, 0) 70%)',
-            filter: 'blur(75px)',
-            borderRadius: '50%'
-          }}
-        />
+        <div style={{
+          position: 'absolute',
+          top: '-20%',
+          right: '-10%',
+          width: '500px',
+          height: '500px',
+          background: 'radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, rgba(212, 175, 55, 0) 70%)',
+          borderRadius: '50%'
+        }} />
+        <div style={{
+          position: 'absolute',
+          bottom: '-20%',
+          left: '-10%',
+          width: '500px',
+          height: '500px',
+          background: 'radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, rgba(212, 175, 55, 0) 70%)',
+          borderRadius: '50%'
+        }} />
       </div>
 
       <motion.div 
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6 }}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
         style={{ 
-          maxWidth: '430px', 
+          maxWidth: '420px', 
           width: '100%', 
-          padding: '40px', 
-          borderRadius: '24px', 
-          boxShadow: '0 20px 50px rgba(0, 0, 0, 0.4)', 
-          border: '1px solid rgba(212, 175, 55, 0.15)', 
-          background: 'rgba(255, 255, 255, 0.015)',
-          backdropFilter: 'blur(20px)',
+          padding: '48px 40px', 
+          borderRadius: '20px', 
+          boxShadow: '0 4px 40px rgba(0, 0, 0, 0.08)', 
+          border: '1px solid #e2e8f0',
+          background: '#ffffff',
           zIndex: 1,
           position: 'relative'
         }}
@@ -143,92 +118,105 @@ export const AdminLogin = () => {
             gap: '8px', 
             border: 'none', 
             background: 'none', 
-            color: 'var(--text-muted)', 
+            color: '#64748b', 
             cursor: 'pointer', 
-            marginBottom: '28px', 
+            marginBottom: '32px', 
             fontSize: '0.85rem', 
-            fontWeight: '600', 
+            fontWeight: '500', 
             padding: '0',
-            transition: 'all 0.3s'
+            transition: 'color 0.2s'
           }}
-          onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--primary-gold)'; }}
-          onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-muted)'; }}
+          onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--primary)'; }}
+          onMouseLeave={(e) => { e.currentTarget.style.color = '#64748b'; }}
         >
-          <FiArrowLeft /> Return to Traveler Portal
+          <FiArrowLeft /> Back to Website
         </button>
 
-        <div style={{ marginBottom: '30px' }}>
-          <span className="luxury-badge" style={{ fontSize: '0.65rem', marginBottom: '8px', display: 'inline-block' }}>Secure Gate</span>
-          <h1 style={{ fontSize: '2.2rem', fontWeight: '700', color: '#ffffff', marginBottom: '8px', fontFamily: 'var(--font-serif)' }}>
-            Staff <em>Login</em>
+        <div style={{ marginBottom: '32px' }}>
+          <div style={{ 
+            width: '48px', 
+            height: '48px', 
+            borderRadius: '12px', 
+            background: 'linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginBottom: '20px'
+          }}>
+            <FiShield size={24} color="#fff" />
+          </div>
+          <h1 style={{ fontSize: '1.75rem', fontWeight: '700', color: '#0f172a', marginBottom: '8px', fontFamily: 'var(--font-sans)' }}>
+            Admin Portal
           </h1>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', margin: 0, lineHeight: '1.4' }}>
-            Enter your credentials to access the secure administrative deck.
+          <p style={{ color: '#64748b', fontSize: '0.9rem', margin: 0, lineHeight: '1.5' }}>
+            Sign in to access the administrative dashboard.
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '22px' }}>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           
-          <div className="auth-form-group" style={{ marginBottom: '0' }}>
-            <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: '600', color: 'var(--text-muted)', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-              Admin Identifier
+          <div>
+            <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: '600', color: '#334155', marginBottom: '8px' }}>
+              Email Address
             </label>
             <div style={{ position: 'relative' }}>
-              <FiUser style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', color: 'var(--primary-gold)', zIndex: 1 }} size={18} />
+              <FiUser style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }} size={18} />
               <input
                 type="email"
-                placeholder="name@happygroupventures.com"
+                placeholder="admin@happygroupventures.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 style={{
                   width: '100%',
-                  padding: '16px 16px 16px 48px',
-                  borderRadius: '12px',
-                  border: '1px solid rgba(255, 255, 255, 0.08)',
-                  backgroundColor: 'rgba(255, 255, 255, 0.02)',
-                  color: '#ffffff',
+                  padding: '14px 14px 14px 44px',
+                  borderRadius: '10px',
+                  border: '1px solid #e2e8f0',
+                  backgroundColor: '#f8fafc',
+                  color: '#0f172a',
                   outline: 'none',
                   fontSize: '0.9rem',
-                  transition: 'all 0.3s'
+                  transition: 'all 0.2s',
+                  boxSizing: 'border-box'
                 }}
-                onFocus={(e) => { e.target.style.borderColor = 'var(--primary-gold)'; e.target.style.boxShadow = '0 0 15px rgba(212, 175, 55, 0.15)'; }}
-                onBlur={(e) => { e.target.style.borderColor = 'rgba(255, 255, 255, 0.08)'; e.target.style.boxShadow = 'none'; }}
+                onFocus={(e) => { e.target.style.borderColor = 'var(--primary)'; e.target.style.backgroundColor = '#fff'; e.target.style.boxShadow = '0 0 0 3px rgba(212, 175, 55, 0.1)'; }}
+                onBlur={(e) => { e.target.style.borderColor = '#e2e8f0'; e.target.style.backgroundColor = '#f8fafc'; e.target.style.boxShadow = 'none'; }}
               />
             </div>
           </div>
 
-          <div className="auth-form-group" style={{ marginBottom: '4px' }}>
-            <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: '600', color: 'var(--text-muted)', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-              Security Phrase
+          <div>
+            <label style={{ display: 'block', fontSize: '0.8rem', fontWeight: '600', color: '#334155', marginBottom: '8px' }}>
+              Password
             </label>
             <div style={{ position: 'relative' }}>
-              <FiLock style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', color: 'var(--primary-gold)', zIndex: 1 }} size={18} />
+              <FiLock style={{ position: 'absolute', left: '14px', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }} size={18} />
               <input
                 type="password"
-                placeholder="••••••••••••"
+                placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
                 style={{
                   width: '100%',
-                  padding: '16px 16px 16px 48px',
-                  borderRadius: '12px',
-                  border: '1px solid rgba(255, 255, 255, 0.08)',
-                  backgroundColor: 'rgba(255, 255, 255, 0.02)',
-                  color: '#ffffff',
+                  padding: '14px 14px 14px 44px',
+                  borderRadius: '10px',
+                  border: '1px solid #e2e8f0',
+                  backgroundColor: '#f8fafc',
+                  color: '#0f172a',
                   outline: 'none',
                   fontSize: '0.9rem',
-                  transition: 'all 0.3s'
+                  transition: 'all 0.2s',
+                  boxSizing: 'border-box'
                 }}
-                onFocus={(e) => { e.target.style.borderColor = 'var(--primary-gold)'; e.target.style.boxShadow = '0 0 15px rgba(212, 175, 55, 0.15)'; }}
-                onBlur={(e) => { e.target.style.borderColor = 'rgba(255, 255, 255, 0.08)'; e.target.style.boxShadow = 'none'; }}
+                onFocus={(e) => { e.target.style.borderColor = 'var(--primary)'; e.target.style.backgroundColor = '#fff'; e.target.style.boxShadow = '0 0 0 3px rgba(212, 175, 55, 0.1)'; }}
+                onBlur={(e) => { e.target.style.borderColor = '#e2e8f0'; e.target.style.backgroundColor = '#f8fafc'; e.target.style.boxShadow = 'none'; }}
               />
             </div>
           </div>
 
           {formError && (
-            <div className="auth-error-msg flex" style={{ gap: '8px', alignItems: 'center', color: '#ff6b6b', fontSize: '0.85rem', fontWeight: '500', margin: '0' }}>
+            <div style={{ display: 'flex', gap: '8px', alignItems: 'center', color: '#dc2626', fontSize: '0.85rem', fontWeight: '500', padding: '12px', backgroundColor: '#fef2f2', borderRadius: '8px', border: '1px solid #fecaca' }}>
               <FiAlertTriangle style={{ flexShrink: 0 }} />
               <span>{formError}</span>
             </div>
@@ -240,86 +228,81 @@ export const AdminLogin = () => {
             disabled={loading}
             style={{ 
               width: '100%', 
-              padding: '16px', 
-              borderRadius: '12px', 
-              fontWeight: '700', 
+              padding: '14px', 
+              borderRadius: '10px', 
+              fontWeight: '600', 
               border: 'none', 
               cursor: 'pointer',
-              fontSize: '0.95rem',
-              letterSpacing: '0.05em',
-              boxShadow: '0 8px 24px rgba(212,175,55,0.15)',
-              transition: 'all 0.3s',
+              fontSize: '0.9rem',
+              transition: 'all 0.2s',
               marginTop: '4px'
             }}
           >
-            {loading ? 'Verifying Credentials...' : 'Unlock Console'}
+            {loading ? 'Signing in...' : 'Sign In'}
           </button>
 
         </form>
 
-        <div style={{ marginTop: '24px', textAlign: 'center', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-          Standard travelers can sign in via the <span onClick={() => navigate('/login')} style={{ color: 'var(--primary-gold)', cursor: 'pointer', fontWeight: '600', textDecoration: 'underline' }}>Traveler Portal</span>
+        <div style={{ marginTop: '24px', textAlign: 'center', fontSize: '0.85rem', color: '#64748b' }}>
+          Regular user? <span onClick={() => navigate('/login')} style={{ color: 'var(--primary)', cursor: 'pointer', fontWeight: '600' }}>User Login</span>
         </div>
 
         {/* Sandbox Access Toggle */}
-        <div style={{ marginTop: '24px', borderTop: '1px solid rgba(212, 175, 55, 0.15)', paddingTop: '20px', textAlign: 'center' }}>
+        <div style={{ marginTop: '24px', borderTop: '1px solid #e2e8f0', paddingTop: '20px', textAlign: 'center' }}>
           <button 
             onClick={() => setShowSandbox(!showSandbox)}
             style={{
               background: 'none',
               border: 'none',
-              color: 'var(--primary-gold)',
+              color: '#94a3b8',
               fontSize: '0.75rem',
               cursor: 'pointer',
-              textDecoration: 'underline',
-              fontWeight: '600',
-              letterSpacing: '0.05em',
-              textTransform: 'uppercase'
+              fontWeight: '500',
+              textTransform: 'uppercase',
+              letterSpacing: '0.05em'
             }}
           >
-            {showSandbox ? 'Hide Sandbox Access Keys' : 'Show Sandbox Access Keys'}
+            {showSandbox ? 'Hide Demo Credentials' : 'Show Demo Credentials'}
           </button>
 
           {showSandbox && (
             <div style={{ 
-              marginTop: '14px', 
+              marginTop: '12px', 
               padding: '16px', 
-              borderRadius: '14px', 
-              border: '1px dashed rgba(212, 175, 55, 0.25)', 
-              backgroundColor: 'rgba(212, 175, 55, 0.02)',
+              borderRadius: '10px', 
+              border: '1px solid #e2e8f0', 
+              backgroundColor: '#f8fafc',
               textAlign: 'left'
             }}>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '0.8rem', color: 'var(--text-white)' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '0.8rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontWeight: '600', color: 'var(--text-muted)' }}>Identifier:</span>
-                  <code style={{ background: 'rgba(255,255,255,0.05)', padding: '3px 6px', borderRadius: '6px', color: '#ffffff', fontSize: '0.75rem' }}>admin@happygroupventures.com</code>
+                  <span style={{ fontWeight: '500', color: '#64748b' }}>Email:</span>
+                  <code style={{ background: '#e2e8f0', padding: '4px 8px', borderRadius: '6px', color: '#334155', fontSize: '0.75rem' }}>admin@happygroupventures.com</code>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontWeight: '600', color: 'var(--text-muted)' }}>Security Key:</span>
-                  <code style={{ background: 'rgba(255,255,255,0.05)', padding: '3px 6px', borderRadius: '6px', color: '#ffffff', fontSize: '0.75rem' }}>password123</code>
+                  <span style={{ fontWeight: '500', color: '#64748b' }}>Password:</span>
+                  <code style={{ background: '#e2e8f0', padding: '4px 8px', borderRadius: '6px', color: '#334155', fontSize: '0.75rem' }}>password123</code>
                 </div>
                 <button
                   type="button"
                   onClick={handleQuickFill}
                   style={{
-                    marginTop: '10px',
+                    marginTop: '8px',
                     width: '100%',
-                    padding: '8px',
-                    backgroundColor: 'rgba(212, 175, 55, 0.1)',
-                    border: '1px solid rgba(212, 175, 55, 0.2)',
-                    color: 'var(--primary-gold)',
+                    padding: '10px',
+                    backgroundColor: '#fff',
+                    border: '1px solid #e2e8f0',
+                    color: '#334155',
                     borderRadius: '8px',
                     cursor: 'pointer',
-                    fontWeight: '700',
-                    fontSize: '0.72rem',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.04em',
-                    transition: 'all 0.3s'
+                    fontWeight: '600',
+                    fontSize: '0.8rem',
+                    transition: 'all 0.2s'
                   }}
-                  onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = 'rgba(212, 175, 55, 0.18)'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = 'rgba(212, 175, 55, 0.1)'; }}
+                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = 'var(--primary)'; e.currentTarget.style.color = 'var(--primary)'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = '#e2e8f0'; e.currentTarget.style.color = '#334155'; }}
                 >
-                  Auto-fill Admin Credentials
+                  Auto-fill Credentials
                 </button>
               </div>
             </div>

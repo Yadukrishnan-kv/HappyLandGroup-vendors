@@ -42,12 +42,12 @@ const Services = () => {
   };
 
   return (
-    <section className="container" style={styles.servicesSection}>
-      <div style={styles.servicesHeader}>
+    <section className="container services-section" style={styles.servicesSection}>
+      <div className="services-header" style={styles.servicesHeader}>
         <span style={styles.servicesTagline}>What we serve</span>
         <h2 style={styles.servicesTitle}>We offer our best services</h2>
       </div>
-      <div style={styles.servicesCards}>
+      <div className="services-cards" style={styles.servicesCards}>
         {loading ? (
           <>
             <Skeleton type="card" />

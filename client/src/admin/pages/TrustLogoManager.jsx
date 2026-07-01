@@ -103,35 +103,37 @@ const TrustLogoManager = () => {
       </div>
 
       {loading ? <p>Loading...</p> : (
-        <table className="admin-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
-          <thead>
-            <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)', textAlign: 'left' }}>
-              <th style={{ padding: '15px' }}>Logo</th>
-              <th style={{ padding: '15px' }}>Name</th>
-              <th style={{ padding: '15px' }}>Order</th>
-              <th style={{ padding: '15px' }}>Status</th>
-              <th style={{ padding: '15px' }}>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {logos.map(logo => (
-              <tr key={logo._id} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-                <td style={{ padding: '15px' }}>
-                  <img src={getImageUrl(logo.logo)} alt={logo.name} style={{ height: '40px' }} onError={handleImageError} />
-                </td>
-                <td style={{ padding: '15px' }}>{logo.name}</td>
-                <td style={{ padding: '15px' }}>{logo.order}</td>
-                <td style={{ padding: '15px' }}>
-                  <span className={`admin-badge ${logo.status === 'active' ? 'active' : 'inactive'}`}>{logo.status}</span>
-                </td>
-                <td style={{ padding: '15px' }}>
-                  <button onClick={() => handleOpenModal(logo)} style={{ background: 'none', border: 'none', color: '#3498db', cursor: 'pointer', marginRight: '10px' }}><FiEdit size={18} /></button>
-                  <button onClick={() => handleDelete(logo._id)} style={{ background: 'none', border: 'none', color: '#ff6b6b', cursor: 'pointer' }}><FiTrash2 size={18} /></button>
-                </td>
+        <div className="admin-flat-table-container">
+          <table className="admin-flat-table">
+            <thead>
+              <tr>
+                <th>Logo</th>
+                <th>Name</th>
+                <th>Order</th>
+                <th>Status</th>
+                <th>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {logos.map(logo => (
+                <tr key={logo._id}>
+                  <td data-label="Logo">
+                    <img src={getImageUrl(logo.logo)} alt={logo.name} style={{ height: '40px' }} onError={handleImageError} />
+                  </td>
+                  <td data-label="Name">{logo.name}</td>
+                  <td data-label="Order">{logo.order}</td>
+                  <td data-label="Status">
+                    <span className={`admin-badge ${logo.status === 'active' ? 'active' : 'inactive'}`}>{logo.status}</span>
+                  </td>
+                  <td data-label="Actions">
+                    <button onClick={() => handleOpenModal(logo)} style={{ background: 'none', border: 'none', color: '#3498db', cursor: 'pointer', marginRight: '10px' }}><FiEdit size={18} /></button>
+                    <button onClick={() => handleDelete(logo._id)} style={{ background: 'none', border: 'none', color: '#ff6b6b', cursor: 'pointer' }}><FiTrash2 size={18} /></button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
 
       {modalOpen && createPortal(

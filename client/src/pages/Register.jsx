@@ -65,16 +65,16 @@ const Register = () => {
       </div>
       
       <div className="auth-form-col" style={styles.formCol}>
-        <div style={styles.formContainer}>
+        <div className="auth-form-container" style={styles.formContainer}>
           <div style={styles.header}>
-            <h1 style={styles.title}>CREATE AN ACCOUNT</h1>
+            <h1 className="auth-title" style={styles.title}>CREATE AN ACCOUNT</h1>
             <p style={styles.subtitle}>
               By creating an account, you agree to our <a href="#" style={styles.linkText}>Privacy policy</a> and <a href="#" style={styles.linkText}>Terms of use</a>.
             </p>
           </div>
 
           <form style={styles.form} onSubmit={handleSubmit}>
-            <div style={styles.row}>
+            <div className="auth-row" style={styles.row}>
               <input 
                 type="text" 
                 placeholder="First Name" 
@@ -152,20 +152,6 @@ const Register = () => {
 
           <div style={styles.loginPrompt}>
             Already have an account? <Link to="/login" style={styles.loginLink} state={location.state}>Login</Link>
-          </div>
-
-          {/* Sandbox Quick Registry Gate */}
-          <div style={{ marginTop: '20px', padding: '15px', backgroundColor: '#f9fafb', borderRadius: '10px' }}>
-            <span style={{ fontSize: '0.8rem', fontWeight: 'bold', color: 'var(--primary)', display: 'block', textAlign: 'center', marginBottom: '10px' }}>
-              Sandbox Quick Registry Gate
-            </span>
-            <button
-              type="button"
-              onClick={handleQuickFill}
-              style={{ width: '100%', padding: '8px', fontSize: '0.8rem', backgroundColor: 'white', border: '1px solid #e5e7eb', borderRadius: '5px', cursor: 'pointer' }}
-            >
-              Generate Demo Credentials
-            </button>
           </div>
 
         </div>

@@ -21,12 +21,22 @@ const app = express();
 
 // 1. Security Middlewares
 app.use(helmet({
-  crossOriginResourcePolicy: false // Allows loading local uploaded images in the client easily
+  crossOriginResourcePolicy: false,
+  contentSecurityPolicy: {
+    directives: {
+      ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+      'img-src': ["'self'", 'data:', 'https:', 'http:', 'blob:'],
+    }
+  }
 }));
 
-// 2. CORS configuration (allowing local CRA client port 3000 and 3001)
+// 2. CORS configuration
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://127.0.0.1:3000', 'http://localhost:3001', 'http://127.0.0.1:3001'],
+  origin: [
+    'http://localhost:3000', 'http://127.0.0.1:3000',
+    'http://localhost:3001', 'http://127.0.0.1:3001',
+    'https://happylandgroupventures.com'
+  ],
   credentials: true
 }));
 
@@ -49,6 +59,7 @@ app.use('/api/', limiter);
 
 // 5. Serve static files from Uploads directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/api/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // 6. API Route Registrations
 app.use('/api/auth', authRoutes);
